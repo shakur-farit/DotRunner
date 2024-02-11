@@ -7,14 +7,16 @@ namespace Infrastructure
 	{
 		private TimerService _timerService;
 		private readonly Rotator _rotator;
+		private RandomService _random;
 
 		public Game(Rotator rotator) => 
 			_rotator = rotator;
 
 		public void Start()
-		{ 
-			_timerService = new TimerService(5);
-			_rotator.Constructor(_timerService);
+		{
+			_random = new RandomService();
+			_timerService = new TimerService(_random.Next(1f ,5f));
+			_rotator.Constructor(_timerService, _random);
 		}
 
 		public void Update() => 

@@ -7,25 +7,30 @@ namespace Services
 	{
 		public Action TimeIsUp;
 
-		private float _timer;
+		private float _timeDuration;
 
-		public TimerService(float timer) => 
-			_timer = timer;
+		public TimerService(float timeDuration)
+		{
+			_timeDuration = timeDuration;
+		}
 
 		public void UpdateTimer()
 		{
-			if (_timer < 0)
+			if (_timeDuration < 0)
 				return;
 
-			_timer -= Time.deltaTime;
+			_timeDuration -= Time.deltaTime;
 
-			Debug.Log(_timer);
+			Debug.Log(_timeDuration);
 
-			if (_timer < 0)
+			if (_timeDuration < 0)
 			{
 				Debug.Log("Time is up");
 				TimeIsUp?.Invoke();
 			}
 		}
+
+		public void ResetTimer(float timeDuration) => 
+			_timeDuration = timeDuration;
 	}
 }
