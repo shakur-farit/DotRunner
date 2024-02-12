@@ -7,10 +7,10 @@ namespace RotatorField
 	{
 
 		private float _zAngle = 1f;
-		private TimerService _timerService;
-		private RandomService _randomService;
+		private ITimerService _timerService;
+		private IRandomService _randomService;
 
-		public void Constructor(TimerService timerService, RandomService randomService)
+		public void Constructor(ITimerService timerService, IRandomService randomService)
 		{
 			_timerService = timerService;
 			_randomService = randomService;
