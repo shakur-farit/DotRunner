@@ -7,6 +7,6 @@ namespace Services
 		event Action TimeIsUp;
 
 		void UpdateTimer();
-		void ResetTimer(float timeDuration);
+		void ResetTimer(IRandomService random);
 	}
 }

@@ -4,13 +4,23 @@ using Zenject;
 
 namespace Services
 {
-	public class TimerService : ITickable
+	public class TimerService : ITimerService, ITickable
 	{
-		public Action TimeIsUp;
+		public event Action TimeIsUp;
 
 		private float _timeDuration;
 
+		private TimerService(IRandomService randomService)
+		{
+			_timeDuration = randomService.Next(1f, 5f);
+		}
+
 		public void Tick()
+		{
+			UpdateTimer();
+		}
+
+		public void UpdateTimer()
 		{
 			if (_timeDuration < 0)
 				return;
@@ -26,7 +36,7 @@ namespace Services
 			}
 		}
 
-		public void ResetTimer(RandomService random) =>
-			_timeDuration = random.Next(1f,5f);
+		public void ResetTimer(IRandomService random) =>
+			_timeDuration = random.Next(1f, 5f);
 	}
 }

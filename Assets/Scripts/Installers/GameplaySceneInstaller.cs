@@ -7,7 +7,9 @@ namespace Installers
 	{
 		public override void InstallBindings()
 		{
-			Container.Bind<ITickable>().To<TimerService>().AsSingle();
+			Container.BindInterfacesAndSelfTo<RandomService>().AsSingle();
+			Container.BindInterfacesAndSelfTo<TimerService>().AsSingle();
+			Container.BindInterfacesAndSelfTo<AngleSwitcher>().AsSingle();
 		}
 	}
 }

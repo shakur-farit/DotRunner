@@ -2,6 +2,6 @@ namespace Services
 {
 	public interface IAngleSwitcher
 	{
-		float SwitchAngle(float zAngle, TimerService timerService, RandomService randomService);
+		float SwitchAngle(float zAngle, ITimerService timerService, IRandomService randomService);
 	}
 }
