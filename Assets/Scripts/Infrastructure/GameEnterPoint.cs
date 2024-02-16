@@ -12,7 +12,6 @@ namespace Infrastructure
 		private void Awake()
 		{
 			_game = new Game(_rotator);
-
 			_game.Start();
 		}
 

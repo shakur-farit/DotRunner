@@ -1,29 +1,29 @@
+using RotatorField;
 using Services;
 
 namespace States
 {
-	public class BootstrapState : IState
+	public class BootstrapState
 	{
-		private readonly GameStateMachine _gameStateMachine;
+		private readonly Rotator _rotator;
+		private RandomService _random;
+		private AngleSwitcher _angleSwitcher;
 		private TimerService _timerService;
-		private RandomService _randomService;
 
-		public BootstrapState(GameStateMachine gameStateMachine)
+		public BootstrapState(Rotator rotator)
 		{
-			_gameStateMachine = gameStateMachine;
+			_rotator = rotator;
 		}
 
 		public void Enter()
 		{
+			_random = new RandomService();
+			_angleSwitcher = new AngleSwitcher();
+			_timerService = new TimerService(_random);
+			_rotator.Constructor(_timerService, _random, _angleSwitcher);
 		}
 
-		public void Exit()
-		{
-		}
-
-		private void RegisterServices()
-		{
-			_timerService = new TimerService(_randomService);
-		}
+		public void Update() => 
+			_timerService.UpdateTimer();
 	}
 }

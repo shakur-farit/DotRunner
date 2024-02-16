@@ -1,25 +1,24 @@
 using RotatorField;
-using Services;
+using States;
 
 namespace Infrastructure
 {
 	public class Game
 	{
-		private ITimerService _timerService;
+
 		private readonly Rotator _rotator;
-		private IRandomService _random;
+		private BootstrapState _bootstrapState;
 
 		public Game(Rotator rotator) => 
 			_rotator = rotator;
 
 		public void Start()
-		{
-			_random = new RandomService();
-			//_timerService = new TimerService(_random);
-			_rotator.Constructor(_timerService, _random);
+		{ 
+			_bootstrapState = new BootstrapState(_rotator);
+			_bootstrapState.Enter();
 		}
 
 		public void Update() => 
-			_timerService.UpdateTimer();
+			_bootstrapState.Update();
 	}
 }

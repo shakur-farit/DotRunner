@@ -7,10 +7,10 @@ namespace Services
 	{
 		public Action TimeIsUp;
 
-		private IRandomService _randomService;
 		private float _timeDuration;
+		private readonly RandomService _randomService;
 
-		public TimerService(IRandomService randomService) => 
+		public TimerService(RandomService randomService) =>
 			_randomService = randomService;
 
 		public void UpdateTimer()
@@ -29,7 +29,7 @@ namespace Services
 			}
 		}
 
-		public void ResetTimer(float timeDuration) =>
-			_timeDuration = timeDuration;
+		public void ResetTimer(RandomService random) =>
+			_timeDuration = random.Next(1f,5f);
 	}
 }
