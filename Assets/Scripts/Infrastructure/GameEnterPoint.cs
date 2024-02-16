@@ -15,7 +15,7 @@ namespace Infrastructure
 			_game.Start();
 		}
 
-		private void Update() => 
-			_game.Update();
+		//private void Update() => 
+		//	_game.Update();
 	}
 }

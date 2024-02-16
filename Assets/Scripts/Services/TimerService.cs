@@ -1,19 +1,16 @@
 using System;
 using UnityEngine;
+using Zenject;
 
 namespace Services
 {
-	public class TimerService
+	public class TimerService : ITickable
 	{
 		public Action TimeIsUp;
 
 		private float _timeDuration;
-		private readonly RandomService _randomService;
 
-		public TimerService(RandomService randomService) =>
-			_randomService = randomService;
-
-		public void UpdateTimer()
+		public void Tick()
 		{
 			if (_timeDuration < 0)
 				return;

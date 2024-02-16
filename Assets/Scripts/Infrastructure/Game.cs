@@ -18,7 +18,7 @@ namespace Infrastructure
 			_bootstrapState.Enter();
 		}
 
-		public void Update() => 
-			_bootstrapState.Update();
+		//public void Update() => 
+		//	_bootstrapState.Update();
 	}
 }

@@ -19,11 +19,11 @@ namespace States
 		{
 			_random = new RandomService();
 			_angleSwitcher = new AngleSwitcher();
-			_timerService = new TimerService(_random);
+			_timerService = new TimerService();
 			_rotator.Constructor(_timerService, _random, _angleSwitcher);
 		}
 
-		public void Update() => 
-			_timerService.UpdateTimer();
+		//public void Update() => 
+		//	_timerService.UpdateTimer();
 	}
 }
