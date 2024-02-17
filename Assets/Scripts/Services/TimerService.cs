@@ -10,15 +10,11 @@ namespace Services
 
 		private float _timeDuration;
 
-		private TimerService(IRandomService randomService)
-		{
+		private TimerService(IRandomService randomService) => 
 			_timeDuration = randomService.Next(1f, 5f);
-		}
 
-		public void Tick()
-		{
+		public void Tick() => 
 			UpdateTimer();
-		}
 
 		public void UpdateTimer()
 		{
@@ -27,13 +23,8 @@ namespace Services
 
 			_timeDuration -= Time.deltaTime;
 
-			Debug.Log(_timeDuration);
-
-			if (_timeDuration < 0)
-			{
-				Debug.Log("Time is up");
+			if (_timeDuration < 0) 
 				TimeIsUp?.Invoke();
-			}
 		}
 
 		public void ResetTimer(IRandomService random) =>

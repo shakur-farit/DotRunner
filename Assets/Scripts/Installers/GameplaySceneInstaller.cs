@@ -7,9 +7,22 @@ namespace Installers
 	{
 		public override void InstallBindings()
 		{
-			Container.BindInterfacesAndSelfTo<RandomService>().AsSingle();
-			Container.BindInterfacesAndSelfTo<TimerService>().AsSingle();
-			Container.BindInterfacesAndSelfTo<AngleSwitcher>().AsSingle();
+			RegisterRandomService();
+			RegisterInputService();
+			RegisterTimeService();
+			RegisterAngleSwitcher();
 		}
+
+		private void RegisterRandomService() => 
+			Container.BindInterfacesAndSelfTo<RandomService>().AsSingle();
+
+		private void RegisterInputService() => 
+			Container.BindInterfacesAndSelfTo<InputService>().AsSingle();
+
+		private void RegisterTimeService() => 
+			Container.BindInterfacesAndSelfTo<TimerService>().AsSingle();
+
+		private void RegisterAngleSwitcher() => 
+			Container.BindInterfacesAndSelfTo<AngleSwitcher>().AsSingle();
 	}
 }

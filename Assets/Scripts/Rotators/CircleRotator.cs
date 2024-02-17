@@ -1,16 +1,12 @@
 using Services;
-using UnityEngine;
 using Zenject;
 
-namespace RotatorField
+namespace Rotators
 {
-	public class Rotator : MonoBehaviour
+	public class CircleRotator : Rotator
 	{
-
-		private float _zAngle = 1f;
 		private ITimerService _timerService;
 		private IRandomService _randomService;
-		private IAngleSwitcher _angleSwitcher;
 
 		[Inject]
 		private void Constructor(ITimerService timerService, IRandomService randomService, IAngleSwitcher angleSwitcher)
@@ -20,16 +16,10 @@ namespace RotatorField
 			_angleSwitcher = angleSwitcher;
 		}
 
-		private void Start() => 
+		protected override void Start() => 
 			_timerService.TimeIsUp += SwitchAngle;
 
-		private void Update() => 
-			DoRotate();
-
-		private void DoRotate() => 
-			transform.Rotate(0f,0f,_zAngle);
-
-		private void SwitchAngle() =>
+		protected override void SwitchAngle() =>
 			_zAngle = _angleSwitcher.SwitchAngle(_zAngle, _timerService, _randomService);
 	}
 }
