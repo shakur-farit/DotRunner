@@ -2,10 +2,11 @@ using System;
 
 namespace Services
 {
-	public interface IInputService
-	{
-		event Action IsTaped;
+	public interface IInputService : IService
 
-		void Tap();
+	{
+	event Action IsTaped;
+
+	void Tap();
 	}
 }

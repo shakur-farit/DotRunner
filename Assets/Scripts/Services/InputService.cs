@@ -1,22 +1,20 @@
 using System;
 using UnityEngine;
-using Zenject;
 
 namespace Services
 {
-	public class InputService : IInputService, ITickable
+	public class InputService : IInputService
 	{
 		public event Action IsTaped;
 
-		public void Tick() => 
-			Tap();
-
 		public void Tap()
 		{
-			if (Input.GetKeyDown(KeyCode.W))
+			if (Input.touchCount > 0)
 			{
-				Debug.Log("Tap");
-				IsTaped?.Invoke();
+				Touch touch = Input.GetTouch(0);
+
+				if(touch.phase == TouchPhase.Began)
+					IsTaped?.Invoke();
 			}
 		}
 	}

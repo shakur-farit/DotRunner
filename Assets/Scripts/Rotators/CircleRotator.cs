@@ -13,13 +13,13 @@ namespace Rotators
 		{
 			_timerService = timerService;
 			_randomService = randomService;
-			_angleSwitcher = angleSwitcher;
+			AngleSwitcher = angleSwitcher;
 		}
 
 		protected override void Start() => 
 			_timerService.TimeIsUp += SwitchAngle;
 
 		protected override void SwitchAngle() =>
-			_zAngle = _angleSwitcher.SwitchAngle(_zAngle, _timerService, _randomService);
+			ZAngle = AngleSwitcher.SwitchAngle(ZAngle, _timerService, _randomService);
 	}
 }

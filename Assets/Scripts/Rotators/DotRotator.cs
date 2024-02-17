@@ -5,19 +5,26 @@ namespace Rotators
 {
 	public class DotRotator : Rotator
 	{
-		private IInputService _inputServiceService;
+		private IInputService _inputService;
 
 		[Inject]
-		private void Constructor(IAngleSwitcher angleSwitcher, IInputService inputServiceService)
+		private void Constructor(IAngleSwitcher angleSwitcher, IInputService inputService)
 		{
-			_angleSwitcher = angleSwitcher;
-			_inputServiceService = inputServiceService;
+			AngleSwitcher = angleSwitcher;
+			_inputService = inputService;
 		}
 
 		protected override void Start() =>
-			_inputServiceService.IsTaped += SwitchAngle;
+			_inputService.IsTaped += SwitchAngle;
+
+		protected override void Update()
+		{
+			base.Update();
+
+			_inputService.Tap();
+		}
 
 		protected override void SwitchAngle() =>
-			_zAngle = _angleSwitcher.SwitchAngle(_zAngle);
+			ZAngle = AngleSwitcher.SwitchAngle(ZAngle);
 	}
 }

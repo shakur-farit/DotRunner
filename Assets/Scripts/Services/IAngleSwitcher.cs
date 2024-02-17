@@ -1,6 +1,6 @@
 namespace Services
 {
-	public interface IAngleSwitcher
+	public interface IAngleSwitcher : IService
 	{
 		float SwitchAngle(float angle, ITimerService timerService, IRandomService randomService);
 

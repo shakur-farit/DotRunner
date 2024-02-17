@@ -5,18 +5,18 @@ namespace Rotators
 {
 	public abstract class Rotator : MonoBehaviour
 	{
-		protected float _zAngle = 1f;
+		protected float ZAngle = 0.5f;
 
-		protected IAngleSwitcher _angleSwitcher;
+		protected IAngleSwitcher AngleSwitcher;
 
 		protected abstract void Start();
 
 
-		private void Update() =>
+		protected virtual void Update() =>
 			DoRotate();
 
 		protected void DoRotate() =>
-			transform.Rotate(0f, 0f, _zAngle);
+			transform.Rotate(0f, 0f, ZAngle);
 
 		protected abstract void SwitchAngle();
 	}

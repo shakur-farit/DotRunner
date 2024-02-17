@@ -11,6 +11,7 @@ namespace Installers
 			RegisterInputService();
 			RegisterTimeService();
 			RegisterAngleSwitcher();
+			RegisterDeathService();
 		}
 
 		private void RegisterRandomService() => 
@@ -24,5 +25,8 @@ namespace Installers
 
 		private void RegisterAngleSwitcher() => 
 			Container.BindInterfacesAndSelfTo<AngleSwitcher>().AsSingle();
+
+		private void RegisterDeathService() => 
+			Container.BindInterfacesAndSelfTo<DeathService>().AsSingle();
 	}
 }
