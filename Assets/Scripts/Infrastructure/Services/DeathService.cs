@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace Services
+namespace Infrastructure.Services
 {
 	public class DeathService : IDeathService
 	{

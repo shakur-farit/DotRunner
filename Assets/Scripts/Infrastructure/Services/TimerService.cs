@@ -2,7 +2,7 @@ using System;
 using UnityEngine;
 using Zenject;
 
-namespace Services
+namespace Infrastructure.Services
 {
 	public class TimerService : ITimerService, ITickable
 	{

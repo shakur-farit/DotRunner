@@ -1,6 +1,6 @@
 using UnityEngine;
 
-namespace Services
+namespace Infrastructure.Services
 {
 	public class RandomService : IRandomService
 	{

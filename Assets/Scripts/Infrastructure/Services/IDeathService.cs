@@ -1,7 +1,7 @@
 using System;
 using UnityEngine;
 
-namespace Services
+namespace Infrastructure.Services
 {
 	public interface IDeathService
 	{

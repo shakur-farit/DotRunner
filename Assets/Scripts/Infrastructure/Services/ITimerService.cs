@@ -1,6 +1,6 @@
 using System;
 
-namespace Services
+namespace Infrastructure.Services
 {
 	public interface ITimerService : IService
 	{
