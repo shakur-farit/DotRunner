@@ -1,3 +1,5 @@
+using Infrastructure.AssetsManagement;
+using Infrastructure.Factory;
 using Infrastructure.Services;
 using Zenject;
 
@@ -7,12 +9,20 @@ namespace Installers
 	{
 		public override void InstallBindings()
 		{
-			RegisterRandomService();
 			RegisterInputService();
+			RegisterDeathService();
+			RegisterAssetsService();
+			RegisterRandomService();
 			RegisterTimeService();
 			RegisterAngleSwitcher();
-			RegisterDeathService();
+			RegisterGameFactory();
 		}
+
+		private void RegisterAssetsService() => 
+			Container.BindInterfacesAndSelfTo<Assets>().AsSingle();
+
+		private void RegisterGameFactory() => 
+			Container.BindInterfacesAndSelfTo<GameFactory>().AsSingle();
 
 		private void RegisterRandomService() => 
 			Container.BindInterfacesAndSelfTo<RandomService>().AsSingle();
