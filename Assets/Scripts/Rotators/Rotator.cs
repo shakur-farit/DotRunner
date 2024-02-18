@@ -11,6 +11,7 @@ namespace Rotators
 
 		protected abstract void Start();
 
+		protected abstract void OnDestroy();
 
 		protected virtual void Update() =>
 			DoRotate();

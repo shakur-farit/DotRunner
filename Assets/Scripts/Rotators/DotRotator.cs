@@ -17,6 +17,9 @@ namespace Rotators
 		protected override void Start() =>
 			_inputService.IsTaped += SwitchAngle;
 
+		protected override void OnDestroy() => 
+			_inputService.IsTaped -= SwitchAngle;
+
 		protected override void Update()
 		{
 			base.Update();
