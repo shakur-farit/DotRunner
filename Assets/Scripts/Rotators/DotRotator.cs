@@ -1,4 +1,5 @@
 using Infrastructure.Services;
+using UnityEngine;
 using Zenject;
 
 namespace Rotators
@@ -8,7 +9,7 @@ namespace Rotators
 		private IInputService _inputService;
 
 		[Inject]
-		private void Constructor(IAngleSwitcher angleSwitcher, IInputService inputService)
+		public void Constructor(IAngleSwitcher angleSwitcher, IInputService inputService)
 		{
 			AngleSwitcher = angleSwitcher;
 			_inputService = inputService;
