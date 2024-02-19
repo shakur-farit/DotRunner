@@ -5,7 +5,7 @@ namespace Rotators
 {
 	public abstract class Rotator : MonoBehaviour
 	{
-		protected float ZAngle = 0.5f;
+		protected float ZAngle = 0.3f;
 
 		protected IAngleSwitcher AngleSwitcher;
 
