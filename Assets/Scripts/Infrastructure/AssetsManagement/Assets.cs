@@ -15,5 +15,11 @@ namespace Infrastructure.AssetsManagement
 			GameObject prefab = Resources.Load<GameObject>(path);
 			return _diContainer.InstantiatePrefab(prefab);
 		}
+
+		public GameObject Instantiate(string path, Transform parentTransform)
+		{
+			GameObject prefab = Resources.Load<GameObject>(path);
+			return _diContainer.InstantiatePrefab(prefab, parentTransform);
+		}
 	}
 }

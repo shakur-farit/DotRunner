@@ -1,7 +1,11 @@
+using UnityEngine;
+
 namespace UI.Services.Factory
 {
 	public interface IUIFactory
 	{
-		void CreateGameOverWindow();
+		Transform UIRoot { get; }
+		void CreateGameOverWindow(Transform parentTransform);
+		void CreateUIRoot();
 	}
 }

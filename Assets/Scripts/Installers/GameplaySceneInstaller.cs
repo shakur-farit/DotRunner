@@ -1,6 +1,8 @@
 using Infrastructure.AssetsManagement;
 using Infrastructure.Factory;
 using Infrastructure.Services;
+using UI.Services.Factory;
+using UI.Services.Window;
 using Zenject;
 
 namespace Installers
@@ -16,6 +18,8 @@ namespace Installers
 			RegisterTimeService();
 			RegisterAngleSwitcher();
 			RegisterGameFactory();
+			RegisterUIFactory();
+			RegisterWindowService();
 		}
 
 		private void RegisterAssetsService() => 
@@ -38,5 +42,11 @@ namespace Installers
 
 		private void RegisterDeathService() => 
 			Container.BindInterfacesAndSelfTo<DeathService>().AsSingle();
+
+		private void RegisterUIFactory() => 
+			Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();
+
+		private void RegisterWindowService() => 
+			Container.BindInterfacesAndSelfTo<WindowService>().AsSingle();
 	}
 }

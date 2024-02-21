@@ -1,4 +1,6 @@
+using Infrastructure.Services;
 using UI.Services.Factory;
+using Zenject;
 
 namespace UI.Services.Window
 {
@@ -18,7 +20,7 @@ namespace UI.Services.Window
 				case WindowId.Main:
 					break;
 				case WindowId.GameOver:
-					_uiFactory.CreateGameOverWindow();
+					_uiFactory.CreateGameOverWindow(_uiFactory.UIRoot);
 					break;
 			}
 		}
