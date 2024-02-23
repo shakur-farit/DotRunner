@@ -4,7 +4,9 @@ namespace Infrastructure.Factory
 {
 	public interface IGameFactory
 	{
-		GameObject CreateDot();
-		GameObject CreateCircle();
+		GameObject Dot { get; }
+		GameObject Circle { get; }
+		void CreateDot();
+		void CreateCircle();
 	}
 }

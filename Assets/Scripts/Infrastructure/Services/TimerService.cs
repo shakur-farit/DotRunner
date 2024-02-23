@@ -1,10 +1,9 @@
 using System;
 using UnityEngine;
-using Zenject;
 
 namespace Infrastructure.Services
 {
-	public class TimerService : ITimerService, ITickable
+	public class TimerService : ITimerService
 	{
 		public event Action TimeIsUp;
 
@@ -12,9 +11,6 @@ namespace Infrastructure.Services
 
 		private TimerService(IRandomService randomService) => 
 			_timeDuration = randomService.Next(1f, 5f);
-
-		public void Tick() => 
-			UpdateTimer();
 
 		public void UpdateTimer()
 		{

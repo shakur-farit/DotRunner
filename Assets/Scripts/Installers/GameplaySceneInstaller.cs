@@ -20,7 +20,11 @@ namespace Installers
 			RegisterGameFactory();
 			RegisterUIFactory();
 			RegisterWindowService();
+			RegisterSceneService();
 		}
+
+		private void RegisterSceneService() => 
+			Container.BindInterfacesAndSelfTo<SceneService>().AsSingle();
 
 		private void RegisterAssetsService() => 
 			Container.BindInterfacesAndSelfTo<Assets>().AsSingle();

@@ -7,13 +7,16 @@ namespace Infrastructure.Factory
 	{
 		private readonly IAssets _assets;
 
+		public GameObject Dot { get; private set; }
+		public GameObject Circle { get; private set; }
+
 		public GameFactory(IAssets assets) => 
 			_assets = assets;
 
-		public GameObject CreateDot() => 
-			_assets.Instantiate(AssetPath.DotPath);
+		public void CreateDot() => 
+			Dot = _assets.Instantiate(AssetPath.DotPath);
 
-		public GameObject CreateCircle() => 
-			_assets.Instantiate(AssetPath.CirclePath);
+		public void CreateCircle() => 
+			Circle = _assets.Instantiate(AssetPath.CirclePath);
 	}
 }
