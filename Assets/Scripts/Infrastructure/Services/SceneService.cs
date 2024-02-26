@@ -6,29 +6,39 @@ namespace Infrastructure.Services
 	public class SceneService : ISceneService
 	{
 		private readonly IGameFactory _gameFactory;
+		private readonly ICountdownTimerService _countdownTimer;
+		private readonly ICountUpTimerService _countUpTimer;
 
-		public SceneService(IGameFactory gameFactory) => 
+		public SceneService(IGameFactory gameFactory, ICountdownTimerService countdownTimer, ICountUpTimerService countUpTimer)
+		{
 			_gameFactory = gameFactory;
+			_countdownTimer = countdownTimer;
+			_countUpTimer = countUpTimer;
+		}
 
-		public void ReloadScene()
+		public void RestartScene()
 		{
 			ClearScene();
-
-			CreateObjects();
+			CreateGameObjects();
+			RestartTimers();
 		}
 
-		private void CreateObjects()
+		private void RestartTimers()
 		{
-			CreateDot();
-			CreateCircle();
-			Debug.Log("Created Object");
+			_countdownTimer.StartCountdownTimer();
+			_countUpTimer.StartCountUpTimer();
 		}
 
-		public void ClearScene()
+		private void ClearScene()
 		{
 			DestroyDot();
 			DestroyCircle();
-			Debug.Log("SceneCleared");
+		}
+
+		private void CreateGameObjects()
+		{
+			CreateDot();
+			CreateCircle();
 		}
 
 		private void CreateCircle() => 
@@ -39,6 +49,7 @@ namespace Infrastructure.Services
 
 		private void DestroyDot() => 
 			Object.Destroy(_gameFactory.Dot);
+
 		private void DestroyCircle() =>
 			Object.Destroy(_gameFactory.Circle);
 	}

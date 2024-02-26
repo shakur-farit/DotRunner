@@ -9,6 +9,7 @@ namespace Infrastructure.Factory
 
 		public GameObject Dot { get; private set; }
 		public GameObject Circle { get; private set; }
+		public GameObject Hud { get; set; }
 
 		public GameFactory(IAssets assets) => 
 			_assets = assets;
@@ -18,5 +19,8 @@ namespace Infrastructure.Factory
 
 		public void CreateCircle() => 
 			Circle = _assets.Instantiate(AssetPath.CirclePath);
+
+		public void CreateHud() =>
+			Hud = _assets.Instantiate(AssetPath.HudPath);
 	}
 }

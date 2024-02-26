@@ -11,14 +11,17 @@ namespace Infrastructure
 		private Game _game;
 		private IGameFactory _gameFactory;
 		private IUIFactory _uiFactory;
-		private ITimerService _timerService;
+		private ICountdownTimerService _countdownTimer;
+		private ICountUpTimerService _countUpTimer;
 
 		[Inject]
-		private void Constructor(IGameFactory gameFactory, IUIFactory uiFactory, ITimerService timerService)
+		private void Constructor(IGameFactory gameFactory, IUIFactory uiFactory, ICountdownTimerService countdownTimer,
+			ICountUpTimerService countUpTimer)
 		{
 			_gameFactory = gameFactory;
 			_uiFactory = uiFactory;
-			_timerService = timerService;
+			_countdownTimer = countdownTimer;
+			_countUpTimer = countUpTimer;
 		}
 
 		private void Awake()
@@ -27,7 +30,10 @@ namespace Infrastructure
 			_game.InitObjects();
 		}
 
-		private void Update() => 
-			_timerService.UpdateTimer();
+		private void Update()
+		{
+			_countdownTimer.UpdateCountdownTimer();
+			_countUpTimer.UpdateCountUpTimer();
+		}
 	}
 }

@@ -1,6 +1,5 @@
 using Infrastructure.Factory;
 using UI.Services.Factory;
-using UnityEngine;
 
 namespace Infrastructure
 {
@@ -17,9 +16,15 @@ namespace Infrastructure
 
 		public void InitObjects()
 		{
+			InitGameObjects();
+			InitUIRoot();
+		}
+
+		private void InitGameObjects()
+		{
 			InitDot();
 			InitCircle();
-			InitUIRoot();
+			InitHud();
 		}
 
 		private void InitDot() => 
@@ -27,6 +32,9 @@ namespace Infrastructure
 
 		private void InitCircle() =>
 			_gameFactory.CreateCircle();
+
+		private void InitHud() => 
+			_gameFactory.CreateHud();
 
 		private void InitUIRoot() => 
 			_uiFactory.CreateUIRoot();

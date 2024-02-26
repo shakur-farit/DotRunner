@@ -16,7 +16,7 @@ namespace UI.Windows
 
 		private void Restart()
 		{
-			_sceneService.ReloadScene();
+			_sceneService.RestartScene();
 			Destroy(gameObject);
 		}
 	}

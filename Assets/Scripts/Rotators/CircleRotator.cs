@@ -5,15 +5,15 @@ namespace Rotators
 {
 	public class CircleRotator : Rotator
 	{
-		private ITimerService _timerService;
+		private ICountdownTimerService _countdownTimerService;
 		private IRandomService _randomService;
 		private IDeathService _deathService;
 
 		[Inject]
-		private void Constructor(ITimerService timerService, IRandomService randomService, IAngleSwitcher angleSwitcher,
+		private void Constructor(ICountdownTimerService countdownTimerService, IRandomService randomService, IAngleSwitcher angleSwitcher,
 			IDeathService deathService)
 		{
-			_timerService = timerService;
+			_countdownTimerService = countdownTimerService;
 			_randomService = randomService;
 			AngleSwitcher = angleSwitcher;
 			_deathService = deathService;
@@ -21,18 +21,18 @@ namespace Rotators
 
 		protected override void Start()
 		{
-			_timerService.TimeIsUp += SwitchAngle;
+			_countdownTimerService.TimeIsUp += SwitchAngle;
 			_deathService.IsDead += StopRotate;
 		}
 
 		protected override void OnDestroy()
 		{
-			_timerService.TimeIsUp -= SwitchAngle;
+			_countdownTimerService.TimeIsUp -= SwitchAngle;
 			_deathService.IsDead -= StopRotate;
 		}
 
 		protected override void SwitchAngle() =>
-			ZAngle = AngleSwitcher.SwitchAngle(ZAngle, _timerService, _randomService);
+			ZAngle = AngleSwitcher.SwitchAngle(ZAngle, _countdownTimerService, _randomService);
 
 		private void StopRotate() =>
 			enabled = false;

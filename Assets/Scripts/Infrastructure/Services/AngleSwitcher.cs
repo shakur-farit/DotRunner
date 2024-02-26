@@ -2,9 +2,9 @@ namespace Infrastructure.Services
 {
 	public class AngleSwitcher : IAngleSwitcher
 	{
-		public float SwitchAngle(float angle, ITimerService timerService, IRandomService randomService)
+		public float SwitchAngle(float angle, ICountdownTimerService countdownTimerService, IRandomService randomService)
 		{
-			timerService.ResetTimer(randomService);
+			countdownTimerService.ResetCountdownTimer(randomService);
 			return -angle;
 		}
 

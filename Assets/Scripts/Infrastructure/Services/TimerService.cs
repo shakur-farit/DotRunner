@@ -3,27 +3,67 @@ using UnityEngine;
 
 namespace Infrastructure.Services
 {
-	public class TimerService : ITimerService
+	public class TimerService : ICountdownTimerService, ICountUpTimerService
 	{
 		public event Action TimeIsUp;
+		
+		private const float ZeroTime = 0f;
 
-		private float _timeDuration;
+		private float _countdownTimeDuration;
+
+		private bool _isCountUpTimerStopped;
+		private bool _isCountdownTimerStopped;
+		
+		public float CountUpTimeDuration { get; private set; }
 
 		private TimerService(IRandomService randomService) => 
-			_timeDuration = randomService.Next(1f, 5f);
+			_countdownTimeDuration = randomService.Next(1f, 5f);
 
-		public void UpdateTimer()
+		public void UpdateCountdownTimer()
 		{
-			if (_timeDuration < 0)
+			if(_isCountdownTimerStopped)
 				return;
 
-			_timeDuration -= Time.deltaTime;
+			if (_countdownTimeDuration < 0)
+				return;
 
-			if (_timeDuration < 0) 
+			_countdownTimeDuration -= Time.deltaTime;
+			Debug.Log($"Countdown: {_countdownTimeDuration}");
+
+			if (_countdownTimeDuration < 0) 
 				TimeIsUp?.Invoke();
 		}
 
-		public void ResetTimer(IRandomService random) =>
-			_timeDuration = random.Next(1f, 5f);
+		public void StartCountdownTimer() =>
+			_isCountdownTimerStopped = false;
+
+		public void StopCountdownTimer()
+		{
+			_isCountdownTimerStopped = true;
+			_countdownTimeDuration = ZeroTime;
+		}
+
+		public void ResetCountdownTimer(IRandomService random) =>
+			_countdownTimeDuration = random.Next(1f, 5f);
+
+		public void UpdateCountUpTimer()
+		{
+			if(_isCountUpTimerStopped)
+				return;
+
+			CountUpTimeDuration += Time.deltaTime;
+			Debug.Log($"CountUp: {CountUpTimeDuration}");
+
+		}
+
+		public void StartCountUpTimer()
+		{
+			CountUpTimeDuration = ZeroTime;
+			_isCountUpTimerStopped = false;
+		}
+
+		public void StopCountUpTimer() =>
+			_isCountUpTimerStopped = true;
+
 	}
 }
