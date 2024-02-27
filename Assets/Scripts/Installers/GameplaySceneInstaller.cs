@@ -1,6 +1,15 @@
+using Data;
 using Infrastructure.AssetsManagement;
 using Infrastructure.Factory;
 using Infrastructure.Services;
+using Infrastructure.Services.AngleSwitcher;
+using Infrastructure.Services.Death;
+using Infrastructure.Services.Input;
+using Infrastructure.Services.PersistentProgress;
+using Infrastructure.Services.Randomizer;
+using Infrastructure.Services.SaveLoadService;
+using Infrastructure.Services.Scene;
+using Infrastructure.Services.TimerService;
 using UI.Services.Factory;
 using UI.Services.Window;
 using Zenject;
@@ -21,7 +30,15 @@ namespace Installers
 			RegisterUIFactory();
 			RegisterWindowService();
 			RegisterSceneService();
+			RegisterPersistentProgressService();
+			RegisterSaveLoadService();
 		}
+
+		private void RegisterSaveLoadService() => 
+			Container.BindInterfacesAndSelfTo<SaveLoadService>().AsSingle();
+
+		private void RegisterPersistentProgressService() => 
+			Container.BindInterfacesAndSelfTo<PersistentProgressService>().AsSingle();
 
 		private void RegisterSceneService() => 
 			Container.BindInterfacesAndSelfTo<SceneService>().AsSingle();
@@ -42,7 +59,7 @@ namespace Installers
 			Container.BindInterfacesAndSelfTo<TimerService>().AsSingle();
 
 		private void RegisterAngleSwitcher() => 
-			Container.BindInterfacesAndSelfTo<AngleSwitcher>().AsSingle();
+			Container.BindInterfacesAndSelfTo<AngleSwitcherService>().AsSingle();
 
 		private void RegisterDeathService() => 
 			Container.BindInterfacesAndSelfTo<DeathService>().AsSingle();

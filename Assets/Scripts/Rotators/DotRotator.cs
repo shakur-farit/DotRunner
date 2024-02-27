@@ -1,4 +1,6 @@
 using Infrastructure.Services;
+using Infrastructure.Services.AngleSwitcher;
+using Infrastructure.Services.Input;
 using UnityEngine;
 using Zenject;
 
@@ -9,9 +11,9 @@ namespace Rotators
 		private IInputService _inputService;
 
 		[Inject]
-		public void Constructor(IAngleSwitcher angleSwitcher, IInputService inputService)
+		public void Constructor(IAngleSwitcherService angleSwitcherService, IInputService inputService)
 		{
-			AngleSwitcher = angleSwitcher;
+			AngleSwitcherService = angleSwitcherService;
 			_inputService = inputService;
 		}
 
@@ -29,6 +31,6 @@ namespace Rotators
 		}
 
 		protected override void SwitchAngle() =>
-			ZAngle = AngleSwitcher.SwitchAngle(ZAngle);
+			ZAngle = AngleSwitcherService.SwitchAngle(ZAngle);
 	}
 }

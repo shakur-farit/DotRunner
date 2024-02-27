@@ -1,4 +1,8 @@
 using Infrastructure.Services;
+using Infrastructure.Services.AngleSwitcher;
+using Infrastructure.Services.Death;
+using Infrastructure.Services.Randomizer;
+using Infrastructure.Services.TimerService;
 using Zenject;
 
 namespace Rotators
@@ -10,12 +14,12 @@ namespace Rotators
 		private IDeathService _deathService;
 
 		[Inject]
-		private void Constructor(ICountdownTimerService countdownTimerService, IRandomService randomService, IAngleSwitcher angleSwitcher,
+		private void Constructor(ICountdownTimerService countdownTimerService, IRandomService randomService, IAngleSwitcherService angleSwitcherService,
 			IDeathService deathService)
 		{
 			_countdownTimerService = countdownTimerService;
 			_randomService = randomService;
-			AngleSwitcher = angleSwitcher;
+			AngleSwitcherService = angleSwitcherService;
 			_deathService = deathService;
 		}
 
@@ -32,7 +36,7 @@ namespace Rotators
 		}
 
 		protected override void SwitchAngle() =>
-			ZAngle = AngleSwitcher.SwitchAngle(ZAngle, _countdownTimerService, _randomService);
+			ZAngle = AngleSwitcherService.SwitchAngle(ZAngle, _countdownTimerService, _randomService);
 
 		private void StopRotate() =>
 			enabled = false;

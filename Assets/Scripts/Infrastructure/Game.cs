@@ -1,5 +1,9 @@
+using Data;
 using Infrastructure.Factory;
+using Infrastructure.Services.PersistentProgress;
+using Infrastructure.Services.SaveLoadService;
 using UI.Services.Factory;
+using UnityEngine;
 
 namespace Infrastructure
 {
@@ -7,11 +11,15 @@ namespace Infrastructure
 	{
 		private readonly IGameFactory _gameFactory;
 		private readonly IUIFactory _uiFactory;
+		private readonly ILoadService _loadService;
+		private readonly IPersistentProgressService _progressService;
 
-		public Game(IGameFactory gameFactory, IUIFactory uiFactory)
+		public Game(IGameFactory gameFactory, IUIFactory uiFactory, ILoadService loadService, IPersistentProgressService progressService)
 		{
 			_gameFactory = gameFactory;
 			_uiFactory = uiFactory;
+			_loadService = loadService;
+			_progressService = progressService;
 		}
 
 		public void InitObjects()
@@ -19,6 +27,12 @@ namespace Infrastructure
 			InitGameObjects();
 			InitUIRoot();
 		}
+
+		public void LoadProgress() => 
+			_progressService.Progress = _loadService.LoadProgress() ?? NewProgress();
+
+		private Progress NewProgress() => 
+			new();
 
 		private void InitGameObjects()
 		{

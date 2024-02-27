@@ -1,28 +1,15 @@
-using Infrastructure.Services;
-using UI.Services.Window;
 using UnityEngine;
-using Zenject;
 
 namespace Dot
 {
+	[RequireComponent(typeof(DotDeath))]
 	public class DotCollideDetector : MonoBehaviour
 	{
-		private IDeathService _deathService;
-		private IWindowService _windowService;
-
+		private DotDeath _dotDeath;
 		private bool _isCollided;
-		private ICountdownTimerService _countdownTimer;
-		private ICountUpTimerService _countUpTimer;
 
-		[Inject]
-		public void Constructor(IDeathService deathService, IWindowService windowService,
-			ICountdownTimerService countdownTimer, ICountUpTimerService countUpTimer)
-		{
-			_deathService = deathService;
-			_windowService = windowService;
-			_countdownTimer = countdownTimer;
-			_countUpTimer = countUpTimer;
-		}
+		private void Start() => 
+			_dotDeath = GetComponent<DotDeath>();
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
@@ -31,26 +18,7 @@ namespace Dot
 
 			_isCollided = true;
 
-			StopTheGame();
+			_dotDeath.StopTheGame();
 		}
-
-		private void StopTheGame()
-		{
-			OpenGameOverWindow();
-			StopTimers();
-			DestroyDot();
-		}
-
-		private void StopTimers()
-		{
-			_countdownTimer.StopCountdownTimer();
-			_countUpTimer.StopCountUpTimer();
-		}
-
-		private void OpenGameOverWindow() => 
-			_windowService.Open(WindowId.GameOver);
-
-		private void DestroyDot() => 
-			_deathService.Destroy(gameObject);
 	}
 }

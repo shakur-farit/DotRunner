@@ -1,4 +1,5 @@
 using Infrastructure.Services;
+using Infrastructure.Services.AngleSwitcher;
 using UnityEngine;
 
 namespace Rotators
@@ -7,7 +8,7 @@ namespace Rotators
 	{
 		protected float ZAngle = 0.3f;
 
-		protected IAngleSwitcher AngleSwitcher;
+		protected IAngleSwitcherService AngleSwitcherService;
 
 		protected abstract void Start();
 

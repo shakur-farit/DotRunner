@@ -1,4 +1,4 @@
-using Infrastructure.Services;
+using Infrastructure.Services.TimerService;
 using TMPro;
 using UnityEngine;
 using Zenject;
@@ -17,7 +17,10 @@ namespace Hud
 		private void Update() => 
 			UpdateScoreText();
 
-		private void UpdateScoreText() => 
-			ScoreText.text = _countUpTimer.CountUpTimeDuration.ToString("####");
+		private void UpdateScoreText()
+		{
+			int score = (int)_countUpTimer.CountUpTimeDuration;
+			ScoreText.text = score.ToString();
+		}
 	}
 }
