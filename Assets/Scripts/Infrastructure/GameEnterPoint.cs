@@ -3,6 +3,7 @@ using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.StaticData;
 using Infrastructure.Services.TimerService;
+using Infrastructure.States;
 using UI.Services.Factory;
 using UnityEngine;
 using Zenject;
@@ -12,35 +13,37 @@ namespace Infrastructure
 	public class GameEnterPoint : MonoBehaviour
 	{
 		private Game _game;
+
+		private IStaticDataService _staticDataService;
+		private IPersistentProgressService _progressService;
+		private ILoadService _loadService;
+
 		private IGameFactory _gameFactory;
 		private IUIFactory _uiFactory;
+
 		private ICountdownTimerService _countdownTimer;
 		private ICountUpTimerService _countUpTimer;
-		private ILoadService _loadService;
-		private IPersistentProgressService _progressService;
-		private IStaticDataService _staticDataService;
 
 		[Inject]
-		private void Constructor(IGameFactory gameFactory, IUIFactory uiFactory, ICountdownTimerService countdownTimer,
-			ICountUpTimerService countUpTimer, ILoadService loadService, IPersistentProgressService progressService,
-			IStaticDataService staticDataService)
+		private void Constructor(IStaticDataService staticDataService, IPersistentProgressService progressService,
+			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, 
+			ICountdownTimerService countdownTimer, ICountUpTimerService countUpTimer)
 		{
+			_staticDataService = staticDataService;
+			_progressService = progressService;
+			_loadService = loadService;
 			_gameFactory = gameFactory;
 			_uiFactory = uiFactory;
 			_countdownTimer = countdownTimer;
 			_countUpTimer = countUpTimer;
-			_loadService = loadService;
-			_progressService = progressService;
-			_staticDataService = staticDataService;
 		}
 
 		private void Awake()
 		{
-			_game = new Game(_gameFactory, _uiFactory, _loadService, _progressService, _staticDataService);
-			_game.LoadStaticData();
-			_game.LoadProgress();
+			_game = new Game(_staticDataService, _progressService, _loadService, _gameFactory, _uiFactory);
+			_game.StateMachine.Enter<LoadStaticDataState>();
+
 			_countdownTimer.SetCountdownTimeDuration();
-			_game.InitObjects();
 		}
 
 		private void Update()
