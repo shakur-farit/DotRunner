@@ -1,5 +1,4 @@
 using Data;
-using Infrastructure.Factory;
 using Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
@@ -7,7 +6,7 @@ namespace Infrastructure.Services.SaveLoadService
 {
 	public class SaveLoadService : ISaveService, ILoadService
 	{
-		public  const string ProgressKey = "Progress";
+		public const string ProgressKey = "Progress";
 
 		private readonly IPersistentProgressService _progressService;
 

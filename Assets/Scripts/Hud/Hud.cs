@@ -8,6 +8,7 @@ namespace Hud
 	public class Hud : MonoBehaviour
 	{
 		public TextMeshProUGUI ScoreText;
+
 		private ICountUpTimerService _countUpTimer;
 
 		[Inject]

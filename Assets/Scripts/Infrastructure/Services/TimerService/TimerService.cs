@@ -1,5 +1,6 @@
 using System;
 using Infrastructure.Services.Randomizer;
+using Infrastructure.Services.StaticData;
 using UnityEngine;
 
 namespace Infrastructure.Services.TimerService
@@ -10,15 +11,21 @@ namespace Infrastructure.Services.TimerService
 		
 		private const float Zero = 0f;
 
+		private readonly IStaticDataService _staticDataService;
+		private readonly IRandomService _randomService;
+
 		private float _countdownTimeDuration;
 
 		private bool _isCountUpTimerStopped;
 		private bool _isCountdownTimerStopped;
-		
+
 		public float CountUpTimeDuration { get; private set; }
 
-		private TimerService(IRandomService randomService) => 
-			_countdownTimeDuration = randomService.Next(1f, 5f);
+		private TimerService(IRandomService randomService, IStaticDataService staticDataService)
+		{
+			_staticDataService = staticDataService;
+			_randomService = randomService;
+		}
 
 		public void UpdateCountdownTimer()
 		{
@@ -63,5 +70,7 @@ namespace Infrastructure.Services.TimerService
 		public void StopCountUpTimer() =>
 			_isCountUpTimerStopped = true;
 
+		public void SetCountdownTimeDuration() => 
+			_countdownTimeDuration = _randomService.Next(_staticDataService.ForTimer.Min, _staticDataService.ForTimer.Max);
 	}
 }

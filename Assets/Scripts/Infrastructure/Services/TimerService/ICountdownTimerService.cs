@@ -11,5 +11,6 @@ namespace Infrastructure.Services.TimerService
 		void ResetCountdownTimer(IRandomService random);
 		void StartCountdownTimer();
 		void StopCountdownTimer();
+		void SetCountdownTimeDuration();
 	}
 }

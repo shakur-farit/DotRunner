@@ -1,7 +1,5 @@
-using Data;
 using Infrastructure.AssetsManagement;
 using Infrastructure.Factory;
-using Infrastructure.Services;
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.Death;
 using Infrastructure.Services.Input;
@@ -9,6 +7,7 @@ using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.Randomizer;
 using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.Scene;
+using Infrastructure.Services.StaticData;
 using Infrastructure.Services.TimerService;
 using UI.Services.Factory;
 using UI.Services.Window;
@@ -32,7 +31,11 @@ namespace Installers
 			RegisterSceneService();
 			RegisterPersistentProgressService();
 			RegisterSaveLoadService();
+			RegisterStaticDataService();
 		}
+
+		private void RegisterStaticDataService() => 
+			Container.BindInterfacesAndSelfTo<StaticDataService>().AsSingle();
 
 		private void RegisterSaveLoadService() => 
 			Container.BindInterfacesAndSelfTo<SaveLoadService>().AsSingle();

@@ -29,10 +29,10 @@ namespace UI.Windows
 		}
 
 		private void CurrentTimeTextUpdate() => 
-			CurrentTimeText.text = _progressService.Progress.timeData.CurrentTime.ToString();
+			CurrentTimeText.text = _progressService.Progress.TimeData.CurrentTime.ToString();
 
 		private void BestTimeTextUpdate() => 
-			BestTimeText.text = _progressService.Progress.timeData.GetBestTime().ToString();
+			BestTimeText.text = _progressService.Progress.TimeData.GetBestTime().ToString();
 
 		private void Restart()
 		{

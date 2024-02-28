@@ -1,4 +1,3 @@
-using Infrastructure.Services;
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.Death;
 using Infrastructure.Services.Randomizer;
@@ -14,7 +13,7 @@ namespace Rotators
 		private IDeathService _deathService;
 
 		[Inject]
-		private void Constructor(ICountdownTimerService countdownTimerService, IRandomService randomService, IAngleSwitcherService angleSwitcherService,
+		protected void Constructor(ICountdownTimerService countdownTimerService, IRandomService randomService, IAngleSwitcherService angleSwitcherService,
 			IDeathService deathService)
 		{
 			_countdownTimerService = countdownTimerService;
@@ -23,20 +22,24 @@ namespace Rotators
 			_deathService = deathService;
 		}
 
-		protected override void Start()
+		protected override void OnStart()
 		{
+			base.OnStart();
+
 			_countdownTimerService.TimeIsUp += SwitchAngle;
 			_deathService.IsDead += StopRotate;
 		}
 
-		protected override void OnDestroy()
+		protected override void OnOnDestroy()
 		{
+			base.OnOnDestroy();
+
 			_countdownTimerService.TimeIsUp -= SwitchAngle;
 			_deathService.IsDead -= StopRotate;
 		}
 
 		protected override void SwitchAngle() =>
-			ZAngle = AngleSwitcherService.SwitchAngle(ZAngle, _countdownTimerService, _randomService);
+			RotateAngle = AngleSwitcherService.SwitchAngle(RotateAngle, _countdownTimerService, _randomService);
 
 		private void StopRotate() =>
 			enabled = false;

@@ -46,15 +46,15 @@ namespace Dot
 		}
 
 		private void UpdateCurrentTime() => 
-			_progressService.Progress.timeData.CurrentTime = (int)_countUpTimer.CountUpTimeDuration;
+			_progressService.Progress.TimeData.CurrentTime = (int)_countUpTimer.CountUpTimeDuration;
 
 		private void SaveBestTime()
 		{
-			int currentTime = _progressService.Progress.timeData.CurrentTime;
-			int bestTime = _progressService.Progress.timeData.BestTime;
+			int currentTime = _progressService.Progress.TimeData.CurrentTime;
+			int bestTime = _progressService.Progress.TimeData.BestTime;
 
 			if (currentTime > bestTime)
-				_progressService.Progress.timeData.BestTime = currentTime;
+				_progressService.Progress.TimeData.BestTime = currentTime;
 
 			_saveService.SaveProgress();
 		}
