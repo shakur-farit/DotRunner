@@ -17,5 +17,8 @@ namespace UI.Services.Factory
 
 		public void CreateGameOverWindow(Transform parentTransform) => 
 			_assets.Instantiate(AssetPath.GameOverWindowPath, parentTransform);
+
+		public void CreateMainMenuWindow(Transform parentTransform) =>
+			_assets.Instantiate(AssetPath.MainMenuWindowPath, parentTransform);
 	}
 }

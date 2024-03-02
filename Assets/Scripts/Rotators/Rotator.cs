@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.StaticData;
@@ -26,11 +25,14 @@ namespace Rotators
 		private void OnDestroy() => 
 			OnOnDestroy();
 
+		public void StopRotate() =>
+			enabled = false;
+
 		protected virtual void OnStart()
 		{
 			RotateAngle = _staticDataService.ForRotator.RotateAngle;
-			RotateSpeed = _staticDataService.ForRotator.RotateSpeed;
-			IncreaseRotateSpeed();
+			//RotateSpeed = _staticDataService.ForRotator.RotateSpeed;
+			//IncreaseRotateSpeed();
 		}
 
 		protected virtual void OnOnDestroy() => 

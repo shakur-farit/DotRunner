@@ -18,6 +18,7 @@ namespace UI.Services.Window
 				case WindowId.None:
 					break;
 				case WindowId.Main:
+					_uiFactory.CreateMainMenuWindow(_uiFactory.UIRoot);
 					break;
 				case WindowId.GameOver:
 					_uiFactory.CreateGameOverWindow(_uiFactory.UIRoot);

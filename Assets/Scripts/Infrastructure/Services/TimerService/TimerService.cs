@@ -36,6 +36,7 @@ namespace Infrastructure.Services.TimerService
 				return;
 
 			_countdownTimeDuration -= Time.deltaTime;
+			Debug.Log(_countdownTimeDuration);
 
 			if (_countdownTimeDuration < 0) 
 				TimeIsUp?.Invoke();
@@ -59,6 +60,7 @@ namespace Infrastructure.Services.TimerService
 				return;
 
 			CountUpTimeDuration += Time.deltaTime;
+			Debug.Log(CountUpTimeDuration);
 		}
 
 		public void StartCountUpTimer()

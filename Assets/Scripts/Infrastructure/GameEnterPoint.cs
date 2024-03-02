@@ -5,6 +5,7 @@ using Infrastructure.Services.StaticData;
 using Infrastructure.Services.TimerService;
 using Infrastructure.States;
 using UI.Services.Factory;
+using UI.Services.Window;
 using UnityEngine;
 using Zenject;
 
@@ -20,13 +21,14 @@ namespace Infrastructure
 
 		private IGameFactory _gameFactory;
 		private IUIFactory _uiFactory;
+		private IWindowService _windowService;
 
 		private ICountdownTimerService _countdownTimer;
 		private ICountUpTimerService _countUpTimer;
 
 		[Inject]
 		private void Constructor(IStaticDataService staticDataService, IPersistentProgressService progressService,
-			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, 
+			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, IWindowService windowService,
 			ICountdownTimerService countdownTimer, ICountUpTimerService countUpTimer)
 		{
 			_staticDataService = staticDataService;
@@ -34,13 +36,15 @@ namespace Infrastructure
 			_loadService = loadService;
 			_gameFactory = gameFactory;
 			_uiFactory = uiFactory;
+			_windowService = windowService;
 			_countdownTimer = countdownTimer;
 			_countUpTimer = countUpTimer;
 		}
 
 		private void Awake()
 		{
-			_game = new Game(_staticDataService, _progressService, _loadService, _gameFactory, _uiFactory);
+			_game = new Game(_staticDataService, _progressService, _loadService, 
+				_gameFactory, _uiFactory, _windowService, _countdownTimer, _countUpTimer);
 			_game.StateMachine.Enter<LoadStaticDataState>();
 
 			_countdownTimer.SetCountdownTimeDuration();

@@ -7,5 +7,6 @@ namespace UI.Services.Factory
 		Transform UIRoot { get; }
 		void CreateGameOverWindow(Transform parentTransform);
 		void CreateUIRoot();
+		void CreateMainMenuWindow(Transform parentTransform);
 	}
 }

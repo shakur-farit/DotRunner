@@ -40,8 +40,5 @@ namespace Rotators
 
 		protected override void SwitchAngle() =>
 			RotateAngle = AngleSwitcherService.SwitchAngle(RotateAngle, _countdownTimerService, _randomService);
-
-		private void StopRotate() =>
-			enabled = false;
 	}
 }
