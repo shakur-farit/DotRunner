@@ -1,9 +1,11 @@
+using System;
 using Infrastructure.Factory;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.StaticData;
 using Infrastructure.Services.TimerService;
 using Infrastructure.States;
+using StaticEvents;
 using UI.Services.Factory;
 using UI.Services.Window;
 using UnityEngine;
@@ -44,16 +46,36 @@ namespace Infrastructure
 		private void Awake()
 		{
 			_game = new Game(_staticDataService, _progressService, _loadService, 
-				_gameFactory, _uiFactory, _windowService, _countdownTimer, _countUpTimer);
+				_gameFactory, _uiFactory, _windowService);
 			_game.StateMachine.Enter<LoadStaticDataState>();
 
-			_countdownTimer.SetCountdownTimeDuration();
+			StopTiming();
 		}
+
+		private void Start() => 
+			StaticEventsHandler.StartToPlay += StartTiming;
+
+		private void OnDestroy() => 
+			StaticEventsHandler.StartToPlay -= StartTiming;
 
 		private void Update()
 		{
 			_countdownTimer.UpdateCountdownTimer();
 			_countUpTimer.UpdateCountUpTimer();
+		}
+
+		private void StartTiming()
+		{
+			_countUpTimer.StartCountUpTimer();
+			_countdownTimer.StartCountdownTimer();
+
+			_countdownTimer.SetCountdownTimeDuration();
+		}
+
+		private void StopTiming()
+		{
+			_countUpTimer.StopCountUpTimer();
+			_countdownTimer.StopCountdownTimer();
 		}
 	}
 }

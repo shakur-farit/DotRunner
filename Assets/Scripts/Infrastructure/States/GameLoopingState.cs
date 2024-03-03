@@ -1,21 +1,22 @@
-using System;
+using UI.Services.Window;
 
 namespace Infrastructure.States
 {
 	public class GameLoopingState : IState
 	{
-		private readonly GameLoopingStateMachine _gameLoopingStateMachine;
+		private readonly IWindowService _windowService;
 
-		public GameLoopingState(GameLoopingStateMachine gameLoopingStateMachine) => 
-			_gameLoopingStateMachine = gameLoopingStateMachine;
+		public GameLoopingState(IWindowService windowService) => 
+			_windowService = windowService;
 
-		public void Enter()
-		{
-			_gameLoopingStateMachine.Enter<MainMenuState>();
-		}
+		public void Enter() => 
+			OpenMainMenuWindow();
 
 		public void Exit()
 		{
 		}
+
+		private void OpenMainMenuWindow() => 
+			_windowService.Open(WindowId.Main);
 	}
 }

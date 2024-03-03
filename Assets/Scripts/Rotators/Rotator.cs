@@ -1,6 +1,7 @@
 using System.Collections;
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.StaticData;
+using StaticEvents;
 using UnityEngine;
 using Zenject;
 
@@ -8,6 +9,7 @@ namespace Rotators
 {
 	public abstract class Rotator : MonoBehaviour
 	{
+		private const float Zero = 0;
 		protected float RotateAngle;
 		protected float RotateSpeed;
 
@@ -19,8 +21,10 @@ namespace Rotators
 		private void Constructor(IStaticDataService staticData) => 
 			_staticDataService = staticData;
 
-		private void Start() => 
+		private void Start()
+		{
 			OnStart();
+		}
 
 		private void OnDestroy() => 
 			OnOnDestroy();
@@ -30,13 +34,18 @@ namespace Rotators
 
 		protected virtual void OnStart()
 		{
-			RotateAngle = _staticDataService.ForRotator.RotateAngle;
-			//RotateSpeed = _staticDataService.ForRotator.RotateSpeed;
-			//IncreaseRotateSpeed();
+			RotateAngle = Zero;
+			RotateSpeed = Zero;
+
+			StaticEventsHandler.StartToPlay += StartRotate;
 		}
 
-		protected virtual void OnOnDestroy() => 
+		protected virtual void OnOnDestroy()
+		{
+			StaticEventsHandler.StartToPlay -= StartRotate;
+
 			StopAllCoroutines();
+		}
 
 		protected virtual void Update() =>
 			DoRotate();
@@ -46,14 +55,26 @@ namespace Rotators
 
 		protected abstract void SwitchAngle();
 
-		private void IncreaseRotateSpeed() => 
+		private void StartRotate()
+		{
+			SetupAngleAndSpeed();
+			StartToIncreaseRotateSpeed();
+		}
+
+		private void SetupAngleAndSpeed()
+		{
+			RotateAngle = _staticDataService.ForRotator.RotateAngle;
+			RotateSpeed = _staticDataService.ForRotator.RotateSpeed;
+		}
+
+		private void StartToIncreaseRotateSpeed() => 
 			StartCoroutine(IncreaseRotateSpeedRoutine());
 
 		private IEnumerator IncreaseRotateSpeedRoutine()
 		{
 			yield return new WaitForSeconds(_staticDataService.ForRotator.SpeedChangeCooldown);
 			RotateSpeed += _staticDataService.ForRotator.SpeedChangeValue;
-			IncreaseRotateSpeed();
+			StartToIncreaseRotateSpeed();
 		}
 	}
 }

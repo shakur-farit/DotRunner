@@ -14,12 +14,10 @@ namespace Infrastructure
 		public GameStateMachine StateMachine;
 
 		public Game(IStaticDataService staticDataService, IPersistentProgressService progressService,
-			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, IWindowService windowService,
-			ICountdownTimerService countdownTimer, ICountUpTimerService countUpTimer)
+			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, IWindowService windowService)
 		{
 			StateMachine = new GameStateMachine(staticDataService, progressService, 
-				loadService, gameFactory, uiFactory,
-				windowService, countdownTimer, countUpTimer);
+				loadService, gameFactory, uiFactory, windowService);
 		}
 	}
 }

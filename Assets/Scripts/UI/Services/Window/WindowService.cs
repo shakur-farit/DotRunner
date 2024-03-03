@@ -1,6 +1,4 @@
-using Infrastructure.Services;
 using UI.Services.Factory;
-using Zenject;
 
 namespace UI.Services.Window
 {

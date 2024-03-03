@@ -10,7 +10,9 @@ namespace UI.Windows
 		private void Awake() => 
 			OnAwake();
 
-		protected virtual void OnAwake() => 
-			CloseButton.onClick.AddListener(() => Destroy(gameObject));
+		protected abstract void OnAwake();
+
+		protected void CloseWindow() => 
+			Destroy(gameObject);
 	}
 }

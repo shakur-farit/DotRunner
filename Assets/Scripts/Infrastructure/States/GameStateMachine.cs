@@ -4,7 +4,6 @@ using Infrastructure.Factory;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.StaticData;
-using Infrastructure.Services.TimerService;
 using UI.Services.Factory;
 using UI.Services.Window;
 
@@ -17,16 +16,14 @@ namespace Infrastructure.States
 		private IState _activeState;
 
 		public GameStateMachine(IStaticDataService staticDataService, IPersistentProgressService progressService,
-			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, IWindowService windowService,
-			ICountdownTimerService countdownTimer, ICountUpTimerService countUpTimer)
+			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, IWindowService windowService)
 		{
 			_states = new Dictionary<Type, IState>()
 			{
 				[typeof(LoadStaticDataState)] = new LoadStaticDataState(this, staticDataService),
 				[typeof(LoadProgressState)] = new LoadProgressState(this, progressService, loadService),
 				[typeof(LoadLevelState)] = new LoadLevelState(this, gameFactory, uiFactory),
-				[typeof(GameLoopingState)] = new GameLoopingState(new GameLoopingStateMachine(windowService, staticDataService, 
-					countUpTimer, countdownTimer))
+				[typeof(GameLoopingState)] = new GameLoopingState(windowService)
 			};
 		}
 

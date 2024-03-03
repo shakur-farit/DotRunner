@@ -5,13 +5,13 @@ namespace Infrastructure.States
 {
 	public class LoadLevelState : IState
 	{
-		private readonly GameStateMachine _stateMachine;
 		private readonly IGameFactory _gameFactory;
 		private readonly IUIFactory _uiFactory;
+		private readonly GameStateMachine _gameStateMachine;
 
-		public LoadLevelState(GameStateMachine stateMachine, IGameFactory gameFactory, IUIFactory uiFactory)
+		public LoadLevelState(GameStateMachine gameStateMachine, IGameFactory gameFactory, IUIFactory uiFactory)
 		{
-			_stateMachine = stateMachine;
+			_gameStateMachine = gameStateMachine;
 			_gameFactory = gameFactory;
 			_uiFactory = uiFactory;
 		}
@@ -19,7 +19,7 @@ namespace Infrastructure.States
 		public void Enter()
 		{
 			InitObjects();
-			_stateMachine.Enter<GameLoopingState>();
+			_gameStateMachine.Enter<GameLoopingState>();
 		}
 
 		public void Exit()

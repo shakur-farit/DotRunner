@@ -37,7 +37,7 @@ namespace UI.Windows
 		private void Restart()
 		{
 			_sceneService.RestartScene();
-			Destroy(gameObject);
+			CloseWindow();
 		}
 	}
 }
