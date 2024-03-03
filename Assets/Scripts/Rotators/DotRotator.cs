@@ -1,5 +1,6 @@
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.Input;
+using UnityEngine;
 using Zenject;
 
 namespace Rotators
@@ -34,6 +35,8 @@ namespace Rotators
 			base.Update();
 
 			_inputService.Tap();
+
+			Debug.Log(RotateSpeed);
 		}
 
 		protected override void SwitchAngle() =>

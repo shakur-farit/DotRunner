@@ -257,6 +257,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   CloseButton: {fileID: 6451667276448087376}
+  QuitButton: {fileID: 435201958210747024}
+  BestTimeText: {fileID: 8975458834077113912}
 --- !u!1 &5002862278650090722
 GameObject:
   m_ObjectHideFlags: 0

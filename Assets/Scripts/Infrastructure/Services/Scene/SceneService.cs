@@ -4,7 +4,7 @@ using UnityEngine;
 
 namespace Infrastructure.Services.Scene
 {
-	public class SceneService : ISceneService
+	public class SceneService : IRestartable, IQuitable
 	{
 		private readonly IGameFactory _gameFactory;
 		private readonly ICountdownTimerService _countdownTimer;
@@ -22,6 +22,15 @@ namespace Infrastructure.Services.Scene
 			ClearScene();
 			CreateGameObjects();
 			RestartTimers();
+		}
+
+		public void Quit()
+		{
+#if UNITY_EDITOR
+			UnityEditor.EditorApplication.isPlaying =false;
+#else
+			Application.Quit();
+#endif
 		}
 
 		private void RestartTimers()

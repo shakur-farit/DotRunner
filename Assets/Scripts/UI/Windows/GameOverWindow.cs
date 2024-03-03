@@ -1,6 +1,7 @@
 using Data;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.Scene;
+using StaticEvents;
 using TMPro;
 using Zenject;
 
@@ -11,13 +12,13 @@ namespace UI.Windows
 		public TextMeshProUGUI CurrentTimeText;
 		public TextMeshProUGUI BestTimeText;
 
-		private ISceneService _sceneService;
+		private IRestartable _restartable;
 		private IPersistentProgressService _progressService;
 
 		[Inject]
-		private void Constructor(ISceneService sceneService,IPersistentProgressService progressService)
+		private void Constructor(IRestartable restartable,IPersistentProgressService progressService)
 		{
-			_sceneService = sceneService;
+			_restartable = restartable;
 			_progressService = progressService;
 		}
 
@@ -36,7 +37,7 @@ namespace UI.Windows
 
 		private void Restart()
 		{
-			_sceneService.RestartScene();
+			_restartable.RestartScene();
 			CloseWindow();
 		}
 	}

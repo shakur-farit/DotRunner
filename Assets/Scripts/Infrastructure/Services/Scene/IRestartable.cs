@@ -1,6 +1,6 @@
 namespace Infrastructure.Services.Scene
 {
-	public interface ISceneService
+	public interface IRestartable
 	{
 		void RestartScene();
 	}
