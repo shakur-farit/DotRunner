@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.StaticData;
@@ -21,18 +22,7 @@ namespace Rotators
 		private void Constructor(IStaticDataService staticData) => 
 			_staticDataService = staticData;
 
-		private void Start()
-		{
-			OnStart();
-		}
-
-		private void OnDestroy() => 
-			OnOnDestroy();
-
-		public void StopRotate() =>
-			enabled = false;
-
-		protected virtual void OnStart()
+		private void OnEnable()
 		{
 			RotateAngle = Zero;
 			RotateSpeed = Zero;
@@ -40,12 +30,22 @@ namespace Rotators
 			StaticEventsHandler.StartToPlay += StartRotate;
 		}
 
-		protected virtual void OnOnDestroy()
-		{
+		private void OnDisable() => 
 			StaticEventsHandler.StartToPlay -= StartRotate;
 
+		private void Start() => 
+			OnStart();
+
+		private void OnDestroy() => 
+			OnOnDestroy();
+
+		public void StopRotate() =>
+			enabled = false;
+
+		protected abstract void OnStart();
+
+		public virtual void OnOnDestroy() => 
 			StopAllCoroutines();
-		}
 
 		protected virtual void Update() =>
 			DoRotate();

@@ -1,6 +1,5 @@
-using Data;
 using Infrastructure.Services.PersistentProgress;
-using Infrastructure.Services.Scene;
+using Infrastructure.Services.SceneManagement;
 using StaticEvents;
 using TMPro;
 using Zenject;
@@ -39,6 +38,7 @@ namespace UI.Windows
 		{
 			_restartable.RestartScene();
 			CloseWindow();
+			StaticEventsHandler.OnStartToPlay();
 		}
 	}
 }

@@ -2,7 +2,6 @@ using Infrastructure.Factory;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.StaticData;
-using Infrastructure.Services.TimerService;
 using Infrastructure.States;
 using UI.Services.Factory;
 using UI.Services.Window;

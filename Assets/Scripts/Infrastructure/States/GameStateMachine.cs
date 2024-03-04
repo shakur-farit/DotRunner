@@ -9,16 +9,16 @@ using UI.Services.Window;
 
 namespace Infrastructure.States
 {
-	public class GameStateMachine
+	public class GameStateMachine : IStateMachine
 	{
-		private readonly Dictionary<Type, IState> _states;
+		public Dictionary<Type, IState> StatesDictionary { get; }
 
-		private IState _activeState;
+		public IState ActiveState { get; private set; }
 
 		public GameStateMachine(IStaticDataService staticDataService, IPersistentProgressService progressService,
 			ILoadService loadService, IGameFactory gameFactory, IUIFactory uiFactory, IWindowService windowService)
 		{
-			_states = new Dictionary<Type, IState>()
+			StatesDictionary = new Dictionary<Type, IState>()
 			{
 				[typeof(LoadStaticDataState)] = new LoadStaticDataState(this, staticDataService),
 				[typeof(LoadProgressState)] = new LoadProgressState(this, progressService, loadService),
@@ -29,9 +29,9 @@ namespace Infrastructure.States
 
 		public void Enter<TState>() where TState : IState
 		{
-			_activeState?.Exit();
-			IState state = _states[typeof(TState)];
-			_activeState = state;
+			ActiveState?.Exit();
+			IState state = StatesDictionary[typeof(TState)];
+			ActiveState = state;
 			state.Enter();
 		}
 	}

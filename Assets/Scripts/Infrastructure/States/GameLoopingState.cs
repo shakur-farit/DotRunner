@@ -9,7 +9,7 @@ namespace Infrastructure.States
 		public GameLoopingState(IWindowService windowService) => 
 			_windowService = windowService;
 
-		public void Enter() => 
+		public void Enter() =>
 			OpenMainMenuWindow();
 
 		public void Exit()

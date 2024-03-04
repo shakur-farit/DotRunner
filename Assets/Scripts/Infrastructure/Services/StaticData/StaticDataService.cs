@@ -16,7 +16,6 @@ namespace Infrastructure.Services.StaticData
 		{
 			ForRotator = Resources.Load<RotatorStaticData>(RotatorStaticDataPath);
 			ForTimer = Resources.Load<TimerStaticData>(TimerStaticDataPath);
-			Debug.Log(ForTimer);
 		}
 	}
 }

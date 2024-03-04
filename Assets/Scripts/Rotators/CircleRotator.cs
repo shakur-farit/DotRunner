@@ -24,13 +24,11 @@ namespace Rotators
 
 		protected override void OnStart()
 		{
-			base.OnStart();
-
 			_countdownTimerService.TimeIsUp += SwitchAngle;
 			_deathService.IsDead += StopRotate;
 		}
 
-		protected override void OnOnDestroy()
+		public override void OnOnDestroy()
 		{
 			base.OnOnDestroy();
 

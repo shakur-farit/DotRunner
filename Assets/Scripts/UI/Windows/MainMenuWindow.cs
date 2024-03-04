@@ -1,5 +1,5 @@
 using Infrastructure.Services.PersistentProgress;
-using Infrastructure.Services.Scene;
+using Infrastructure.Services.SceneManagement;
 using StaticEvents;
 using TMPro;
 using UnityEngine.UI;

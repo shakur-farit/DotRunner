@@ -6,7 +6,7 @@ using Infrastructure.Services.Input;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.Randomizer;
 using Infrastructure.Services.SaveLoadService;
-using Infrastructure.Services.Scene;
+using Infrastructure.Services.SceneManagement;
 using Infrastructure.Services.StaticData;
 using Infrastructure.Services.TimerService;
 using UI.Services.Factory;

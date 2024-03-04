@@ -1,4 +1,4 @@
-namespace Infrastructure.Services.Scene
+namespace Infrastructure.Services.SceneManagement
 {
 	public interface IQuitable
 	{

@@ -1,6 +1,5 @@
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.Input;
-using UnityEngine;
 using Zenject;
 
 namespace Rotators
@@ -16,14 +15,10 @@ namespace Rotators
 			_inputService = inputService;
 		}
 
-			protected override void OnStart()
-			{
-				base.OnStart();
-
+			protected override void OnStart() => 
 				_inputService.IsTaped += SwitchAngle;
-			}
 
-			protected override void OnOnDestroy()
+			public override void OnOnDestroy()
 			{
 				base.OnOnDestroy();
 
@@ -35,8 +30,6 @@ namespace Rotators
 			base.Update();
 
 			_inputService.Tap();
-
-			Debug.Log(RotateSpeed);
 		}
 
 		protected override void SwitchAngle() =>

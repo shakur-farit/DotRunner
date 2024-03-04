@@ -2,7 +2,7 @@ using Infrastructure.Factory;
 using Infrastructure.Services.TimerService;
 using UnityEngine;
 
-namespace Infrastructure.Services.Scene
+namespace Infrastructure.Services.SceneManagement
 {
 	public class SceneService : IRestartable, IQuitable
 	{
@@ -49,6 +49,7 @@ namespace Infrastructure.Services.Scene
 		{
 			CreateDot();
 			CreateCircle();
+			Debug.Log("Create go");
 		}
 
 		private void CreateCircle() => 
