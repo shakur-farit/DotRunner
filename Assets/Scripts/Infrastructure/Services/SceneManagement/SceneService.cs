@@ -49,7 +49,6 @@ namespace Infrastructure.Services.SceneManagement
 		{
 			CreateDot();
 			CreateCircle();
-			Debug.Log("Create go");
 		}
 
 		private void CreateCircle() => 

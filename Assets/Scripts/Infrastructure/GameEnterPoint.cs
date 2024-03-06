@@ -1,4 +1,4 @@
-using System;
+using Drops;
 using Infrastructure.Factory;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.SaveLoadService;
@@ -53,10 +53,10 @@ namespace Infrastructure
 		}
 
 		private void Start() => 
-			StaticEventsHandler.StartToPlay += StartTiming;
+			StaticEventsHandler.OnStartToPlay += StartTiming;
 
 		private void OnDestroy() => 
-			StaticEventsHandler.StartToPlay -= StartTiming;
+			StaticEventsHandler.OnStartToPlay -= StartTiming;
 
 		private void Update()
 		{

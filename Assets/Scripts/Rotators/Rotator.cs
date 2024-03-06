@@ -27,11 +27,11 @@ namespace Rotators
 			RotateAngle = Zero;
 			RotateSpeed = Zero;
 
-			StaticEventsHandler.StartToPlay += StartRotate;
+			StaticEventsHandler.OnStartToPlay += StartRotate;
 		}
 
 		private void OnDisable() => 
-			StaticEventsHandler.StartToPlay -= StartRotate;
+			StaticEventsHandler.OnStartToPlay -= StartRotate;
 
 		private void Start() => 
 			OnStart();

@@ -9,7 +9,7 @@ namespace Infrastructure.Factory
 
 		public GameObject Dot { get; private set; }
 		public GameObject Circle { get; private set; }
-		public GameObject Hud { get; set; }
+		
 
 		public GameFactory(IAssets assets) => 
 			_assets = assets;
@@ -17,10 +17,16 @@ namespace Infrastructure.Factory
 		public void CreateDot() => 
 			Dot = _assets.Instantiate(AssetPath.DotPath);
 
-		public void CreateCircle() => 
+		public void CreateCircle() =>
 			Circle = _assets.Instantiate(AssetPath.CirclePath);
 
+		public void CreateDebuff() =>
+			_assets.Instantiate(AssetPath.DebuffPath);
+
+		public void CreateDebuffSpawner() =>
+			_assets.Instantiate(AssetPath.DebuffSpawnerPath);
+
 		public void CreateHud() =>
-			Hud = _assets.Instantiate(AssetPath.HudPath);
+			_assets.Instantiate(AssetPath.HudPath);
 	}
 }

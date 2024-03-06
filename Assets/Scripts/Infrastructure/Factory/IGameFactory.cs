@@ -1,5 +1,3 @@
-using System.Collections.Generic;
-using Infrastructure.Services.PersistentProgress;
 using UnityEngine;
 
 namespace Infrastructure.Factory
@@ -8,10 +6,11 @@ namespace Infrastructure.Factory
 	{
 		GameObject Dot { get; }
 		GameObject Circle { get; }
-		GameObject Hud { get; set; }
 
 		void CreateDot();
 		void CreateCircle();
 		void CreateHud();
+		void CreateDebuff();
+		void CreateDebuffSpawner();
 	}
 }

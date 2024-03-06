@@ -36,6 +36,7 @@ namespace Infrastructure.States
 		{
 			InitDot();
 			InitCircle();
+			InitDebuffSpawner();
 			InitHud();
 		}
 
@@ -44,6 +45,9 @@ namespace Infrastructure.States
 
 		private void InitCircle() =>
 			_gameFactory.CreateCircle();
+
+		private void InitDebuffSpawner() => 
+			_gameFactory.CreateDebuffSpawner();
 
 		private void InitHud() =>
 			_gameFactory.CreateHud();

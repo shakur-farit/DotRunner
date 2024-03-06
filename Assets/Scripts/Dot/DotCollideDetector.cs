@@ -1,3 +1,6 @@
+using Drops;
+using Rotators;
+using StaticEvents;
 using UnityEngine;
 
 namespace Dot
@@ -13,12 +16,29 @@ namespace Dot
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
+			if (other.GetComponent<CircleRotator>())
+				CollideWithCircle();
+
+			if (other.GetComponent<Debuff>())
+			{
+				CollideWithDebuff();
+				Destroy(other.gameObject);
+			}
+		}
+
+		private void CollideWithDebuff()
+		{
+			StaticEventsHandler.PickupDebuff();
+			Debug.Log("PickupDebuff");
+		}
+
+		private void CollideWithCircle()
+		{
 			if(_isCollided)
-				return;
-
+				return; 
 			_isCollided = true;
-
 			_dotDeath.StopTheGame();
+			
 		}
 	}
 }
