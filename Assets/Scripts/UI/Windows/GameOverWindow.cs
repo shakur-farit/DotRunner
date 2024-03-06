@@ -38,7 +38,7 @@ namespace UI.Windows
 		{
 			_restartable.RestartScene();
 			CloseWindow();
-			StaticEventsHandler.StartToPlay();
+			StaticEventsHandler.CallStartedToPlayEvent();
 		}
 	}
 }

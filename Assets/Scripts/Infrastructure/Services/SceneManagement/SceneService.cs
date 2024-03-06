@@ -44,12 +44,14 @@ namespace Infrastructure.Services.SceneManagement
 			DestroyDot();
 			DestroyCircle();
 			DestroyDebuff();
+			DestroyDebuffSpawner();
 		}
 
 		private void CreateGameObjects()
 		{
 			CreateDot();
 			CreateCircle();
+			CreateDebufSpawner();
 		}
 
 		private void CreateCircle() => 
@@ -57,6 +59,9 @@ namespace Infrastructure.Services.SceneManagement
 
 		private void CreateDot() => 
 			_gameFactory.CreateDot();
+
+		private void CreateDebufSpawner() => 
+			_gameFactory.CreateDebuffSpawner();
 
 		private void DestroyDot() => 
 			Object.Destroy(_gameFactory.Dot);
@@ -66,5 +71,8 @@ namespace Infrastructure.Services.SceneManagement
 
 		private void DestroyDebuff() => 
 			Object.Destroy(_gameFactory.Debuff);
+
+		private void DestroyDebuffSpawner() => 
+			Object.Destroy(_gameFactory.DebuffSpawner);
 	}
 }

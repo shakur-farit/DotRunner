@@ -6,7 +6,8 @@ namespace Infrastructure.Factory
 	{
 		GameObject Dot { get; }
 		GameObject Circle { get; }
-		GameObject Debuff { get;}
+		GameObject Debuff { get; }
+		GameObject DebuffSpawner { get; }
 
 		void CreateDot();
 		void CreateCircle();

@@ -1,7 +1,7 @@
-using Infrastructure.Services.Death;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.SaveLoadService;
 using Infrastructure.Services.TimerService;
+using StaticEvents;
 using UI.Services.Window;
 using UnityEngine;
 using Zenject;
@@ -10,7 +10,6 @@ namespace Dot
 {
 	public class DotDeath : MonoBehaviour
 	{
-		private IDeathService _deathService;
 		private IWindowService _windowService;
 		private ICountdownTimerService _countdownTimer;
 		private ICountUpTimerService _countUpTimer;
@@ -18,11 +17,10 @@ namespace Dot
 		private ISaveService _saveService;
 
 		[Inject]
-		public void Construct(IDeathService deathService, IWindowService windowService,
+		public void Construct(IWindowService windowService,
 			ICountdownTimerService countdownTimer, ICountUpTimerService countUpTimer,
 			IPersistentProgressService progressService, ISaveService saveService)
 		{
-			_deathService = deathService;
 			_windowService = windowService;
 			_countdownTimer = countdownTimer;
 			_countUpTimer = countUpTimer;
@@ -62,7 +60,10 @@ namespace Dot
 		private void OpenGameOverWindow() =>
 			_windowService.Open(WindowId.GameOver);
 
-		private void DestroyDot() =>
-			_deathService.Destroy(gameObject);
+		private void DestroyDot()
+		{
+			StaticEventsHandler.CallPlayerDiedEvent();
+			Destroy(gameObject);
+		}
 	}
 }

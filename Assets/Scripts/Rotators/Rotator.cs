@@ -26,14 +26,14 @@ namespace Rotators
 			RotateAngle = Zero;
 			RotateSpeed = Zero;
 
-			StaticEventsHandler.OnStartToPlay += StartRotate;
-			StaticEventsHandler.OnPickupDebuff += UseDebuff;
+			StaticEventsHandler.OnStartedToPlay += StartRotate;
+			StaticEventsHandler.OnPickupedDebuff += UseDebuff;
 		}
 
 		private void OnDisable()
 		{
-			StaticEventsHandler.OnStartToPlay -= StartRotate;
-			StaticEventsHandler.OnPickupDebuff -= UseDebuff;
+			StaticEventsHandler.OnStartedToPlay -= StartRotate;
+			StaticEventsHandler.OnPickupedDebuff -= UseDebuff;
 		}
 
 		private void UseDebuff() => 

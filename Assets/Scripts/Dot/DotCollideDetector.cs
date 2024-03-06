@@ -9,10 +9,18 @@ namespace Dot
 	public class DotCollideDetector : MonoBehaviour
 	{
 		private DotDeath _dotDeath;
-		private bool _isCollided;
+		private bool _isCollidedWithCircle;
+		private bool _isCollidedWithDebuff;
 
-		private void Start() => 
+		private void Start()
+		{
 			_dotDeath = GetComponent<DotDeath>();
+
+			StaticEventsHandler.OnDebuffSpawned += InformAboutNewDebuff;
+		}
+
+		private void OnDestroy() => 
+			StaticEventsHandler.OnDebuffSpawned -= InformAboutNewDebuff;
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
@@ -28,17 +36,25 @@ namespace Dot
 
 		private void CollideWithDebuff()
 		{
-			StaticEventsHandler.PickupDebuff();
-			Debug.Log("PickupDebuff");
+			if(_isCollidedWithDebuff)
+				return;
+
+			Debug.Log("Debuf");
+			_isCollidedWithDebuff = true;
+			StaticEventsHandler.CallPickupedDebuffEvent();
 		}
 
 		private void CollideWithCircle()
 		{
-			if(_isCollided)
+			if(_isCollidedWithCircle)
 				return; 
-			_isCollided = true;
+
+			_isCollidedWithCircle = true;
 			_dotDeath.StopTheGame();
 			
 		}
+
+		private void InformAboutNewDebuff() => 
+			_isCollidedWithDebuff = false;
 	}
 }

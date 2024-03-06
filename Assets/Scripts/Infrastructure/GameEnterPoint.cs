@@ -53,10 +53,10 @@ namespace Infrastructure
 		}
 
 		private void Start() => 
-			StaticEventsHandler.OnStartToPlay += StartTiming;
+			StaticEventsHandler.OnStartedToPlay += StartTiming;
 
 		private void OnDestroy() => 
-			StaticEventsHandler.OnStartToPlay -= StartTiming;
+			StaticEventsHandler.OnStartedToPlay -= StartTiming;
 
 		private void Update()
 		{

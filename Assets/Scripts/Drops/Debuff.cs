@@ -1,6 +1,7 @@
 using System.Collections;
-using Unity.VisualScripting;
+using StaticEvents;
 using UnityEngine;
+using Zenject;
 
 namespace Drops
 {
@@ -8,8 +9,22 @@ namespace Drops
 	{
 		private readonly WaitForSeconds _timeToDestroy = new(5);
 
-		private void Start() => 
+		private void Start()
+		{
+			StaticEventsHandler.OnPlayerDied += DestroyDebuff;
+
 			StartCoroutine(DestroyRoutine());
+		}
+
+		private void OnDestroy()
+		{
+			StaticEventsHandler.OnPlayerDied -= DestroyDebuff;
+
+			StopAllCoroutines();
+		}
+
+		private void DestroyDebuff() => 
+			Destroy(gameObject);
 
 		private IEnumerator DestroyRoutine()
 		{

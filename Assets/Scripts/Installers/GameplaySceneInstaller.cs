@@ -1,7 +1,6 @@
 using Infrastructure.AssetsManagement;
 using Infrastructure.Factory;
 using Infrastructure.Services.AngleSwitcher;
-using Infrastructure.Services.Death;
 using Infrastructure.Services.Input;
 using Infrastructure.Services.PersistentProgress;
 using Infrastructure.Services.Randomizer;
@@ -20,7 +19,6 @@ namespace Installers
 		public override void InstallBindings()
 		{
 			RegisterInputService();
-			RegisterDeathService();
 			RegisterAssetsService();
 			RegisterRandomService();
 			RegisterTimeService();
@@ -63,9 +61,6 @@ namespace Installers
 
 		private void RegisterAngleSwitcher() => 
 			Container.BindInterfacesAndSelfTo<AngleSwitcherService>().AsSingle();
-
-		private void RegisterDeathService() => 
-			Container.BindInterfacesAndSelfTo<DeathService>().AsSingle();
 
 		private void RegisterUIFactory() => 
 			Container.BindInterfacesAndSelfTo<UIFactory>().AsSingle();

@@ -1,6 +1,5 @@
 using System.Collections;
 using Infrastructure.Factory;
-using Infrastructure.Services.Death;
 using Infrastructure.Services.Randomizer;
 using Infrastructure.Services.StaticData;
 using StaticEvents;
@@ -15,16 +14,14 @@ namespace Drops
 		private float _spawnTime;
 
 		private IGameFactory _gameFactory;
-		private IDeathService _deathService;
 		private IRandomService _randomService;
 		private IStaticDataService _staticData;
 
 		[Inject]
-		public void Constructor(IGameFactory gameFactory, IDeathService deathService, IRandomService randomService,
+		public void Constructor(IGameFactory gameFactory, IRandomService randomService,
 			IStaticDataService staticData)
 		{
 			_gameFactory = gameFactory;
-			_deathService = deathService;
 			_randomService = randomService;
 			_staticData = staticData;
 		}
@@ -32,33 +29,30 @@ namespace Drops
 
 		private void OnEnable()
 		{
-			StaticEventsHandler.OnStartToPlay += SpawnDebuff;
-			_deathService.IsDead += StopSpawning;
+			StaticEventsHandler.OnStartedToPlay += SpawnDebuff;
+			StaticEventsHandler.OnPlayerDied += StopSpawning;
 		}
 
 		private void OnDisable()
 		{
-			StaticEventsHandler.OnStartToPlay -= SpawnDebuff;
-			_deathService.IsDead -= StopSpawning;
+			StaticEventsHandler.OnStartedToPlay -= SpawnDebuff;
+			StaticEventsHandler.OnPlayerDied -= StopSpawning;
 		}
 
-		private void Start() => 
-			GetSpawnTime();
-
-		private void SpawnDebuff() =>
+		private void SpawnDebuff() => 
 			StartCoroutine(SpawnDebuffRoutine());
 
-		private void StopSpawning()
-		{
-			Debug.Log("StopRoutine");
+		private void StopSpawning() => 
 			StopAllCoroutines();
-		}
 
 		private IEnumerator SpawnDebuffRoutine()
 		{
+			GetSpawnTime();
+
 			yield return new WaitForSeconds(_spawnTime);
 			_gameFactory.CreateDebuff();
-			Debug.Log("Spawn");
+			StaticEventsHandler.CallDebuffSpawendEvent();
+
 			StartCoroutine(SpawnDebuffRoutine());
 		}
 

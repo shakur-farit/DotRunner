@@ -35,7 +35,7 @@ namespace UI.Windows
 
 		private void Play()
 		{
-			StaticEventsHandler.StartToPlay();
+			StaticEventsHandler.CallStartedToPlayEvent();
 			CloseWindow();
 		}
 
