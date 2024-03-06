@@ -43,6 +43,7 @@ namespace Infrastructure.Services.SceneManagement
 		{
 			DestroyDot();
 			DestroyCircle();
+			DestroyDebuff();
 		}
 
 		private void CreateGameObjects()
@@ -62,5 +63,8 @@ namespace Infrastructure.Services.SceneManagement
 
 		private void DestroyCircle() =>
 			Object.Destroy(_gameFactory.Circle);
+
+		private void DestroyDebuff() => 
+			Object.Destroy(_gameFactory.Debuff);
 	}
 }

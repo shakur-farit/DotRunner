@@ -9,7 +9,8 @@ namespace Infrastructure.Factory
 
 		public GameObject Dot { get; private set; }
 		public GameObject Circle { get; private set; }
-		
+		public GameObject Debuff { get; private set; }
+
 
 		public GameFactory(IAssets assets) => 
 			_assets = assets;
@@ -24,7 +25,7 @@ namespace Infrastructure.Factory
 			_assets.Instantiate(AssetPath.DebuffPath);
 
 		public void CreateDebuffSpawner() =>
-			_assets.Instantiate(AssetPath.DebuffSpawnerPath);
+			Debuff = _assets.Instantiate(AssetPath.DebuffSpawnerPath);
 
 		public void CreateHud() =>
 			_assets.Instantiate(AssetPath.HudPath);

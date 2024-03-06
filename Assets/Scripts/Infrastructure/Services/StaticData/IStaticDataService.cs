@@ -6,6 +6,7 @@ namespace Infrastructure.Services.StaticData
 	{
 		RotatorStaticData ForRotator { get; }
 		TimerStaticData ForTimer { get; }
+		DebuffStaticData ForDebuff { get; }
 		void  Load();
 	}
 }

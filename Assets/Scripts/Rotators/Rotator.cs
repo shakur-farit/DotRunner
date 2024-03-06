@@ -1,4 +1,3 @@
-using System;
 using System.Collections;
 using Infrastructure.Services.AngleSwitcher;
 using Infrastructure.Services.StaticData;
@@ -28,10 +27,17 @@ namespace Rotators
 			RotateSpeed = Zero;
 
 			StaticEventsHandler.OnStartToPlay += StartRotate;
+			StaticEventsHandler.OnPickupDebuff += UseDebuff;
 		}
 
-		private void OnDisable() => 
+		private void OnDisable()
+		{
 			StaticEventsHandler.OnStartToPlay -= StartRotate;
+			StaticEventsHandler.OnPickupDebuff -= UseDebuff;
+		}
+
+		private void UseDebuff() => 
+			RotateSpeed += _staticDataService.ForDebuff.RotateSpeedIncreasingValue;
 
 		private void Start() => 
 			OnStart();
