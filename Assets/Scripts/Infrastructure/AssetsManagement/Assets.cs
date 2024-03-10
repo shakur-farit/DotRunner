@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEngine;
 using Zenject;
 
@@ -20,6 +21,12 @@ namespace Infrastructure.AssetsManagement
 		{
 			GameObject prefab = Resources.Load<GameObject>(path);
 			return _diContainer.InstantiatePrefab(prefab, parentTransform);
+		}
+
+		public GameObject Instantiate(string path, Vector2 position, Transform parentTransform)
+		{
+			GameObject prefab = Resources.Load<GameObject>(path);
+			return _diContainer.InstantiatePrefab(prefab, position, Quaternion.identity, parentTransform);
 		}
 	}
 }

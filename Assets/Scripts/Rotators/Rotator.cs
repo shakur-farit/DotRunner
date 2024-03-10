@@ -27,14 +27,19 @@ namespace Rotators
 			RotateSpeed = Zero;
 
 			StaticEventsHandler.OnStartedToPlay += StartRotate;
-			StaticEventsHandler.OnPickupedDebuff += UseDebuff;
+			StaticEventsHandler.OnPickedUpBuff += UseBuff;
+			StaticEventsHandler.OnPickedUpDebuff += UseDebuff;
 		}
 
 		private void OnDisable()
 		{
 			StaticEventsHandler.OnStartedToPlay -= StartRotate;
-			StaticEventsHandler.OnPickupedDebuff -= UseDebuff;
+			StaticEventsHandler.OnPickedUpBuff -= UseBuff;
+			StaticEventsHandler.OnPickedUpDebuff -= UseDebuff;
 		}
+
+		private void UseBuff() =>
+			RotateSpeed -= _staticDataService.ForBuff.RotateSpeedDecreasingValue;
 
 		private void UseDebuff() => 
 			RotateSpeed += _staticDataService.ForDebuff.RotateSpeedIncreasingValue;

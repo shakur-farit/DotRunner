@@ -4,8 +4,9 @@ namespace Infrastructure.AssetsManagement
 	{
 		public const string DotPath = "Dot";
 		public const string CirclePath = "Circle";
+		public const string BuffPath = "Buff";
 		public const string DebuffPath = "Debuff";
-		public const string DebuffSpawnerPath = "DebuffSpwner";
+		public const string SpawnerPath = "Spawner";
 		public const string HudPath = "Hud";
 		public const string UIRootPath = "UIRoot";
 		public const string GameOverWindowPath = "GameOverWindow";

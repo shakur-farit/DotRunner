@@ -1,10 +1,10 @@
 namespace Drops
 {
-	public class Debuff : Drop
+	public class Buff : Drop
 	{
 		protected override void StartCoroutineOnStart()
 		{
-			_timeToDestroy = _staticData.ForDebuff.TimeToDestroy;
+			_timeToDestroy = _staticData.ForBuff.TimeToDestroy;
 
 			StartCoroutine(DestroyRoutine(_timeToDestroy));
 		}

@@ -44,6 +44,7 @@ namespace Infrastructure.Services.SceneManagement
 			DestroyDot();
 			DestroyCircle();
 			DestroyDebuff();
+			DestroyBuff();
 			DestroyDebuffSpawner();
 		}
 
@@ -71,6 +72,9 @@ namespace Infrastructure.Services.SceneManagement
 
 		private void DestroyDebuff() => 
 			Object.Destroy(_gameFactory.Debuff);
+
+		private void DestroyBuff() =>
+			Object.Destroy(_gameFactory.Buff);
 
 		private void DestroyDebuffSpawner() => 
 			Object.Destroy(_gameFactory.DebuffSpawner);

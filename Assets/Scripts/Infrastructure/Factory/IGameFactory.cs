@@ -8,11 +8,13 @@ namespace Infrastructure.Factory
 		GameObject Circle { get; }
 		GameObject Debuff { get; }
 		GameObject DebuffSpawner { get; }
+		GameObject Buff { get; }
 
 		void CreateDot();
 		void CreateCircle();
 		void CreateHud();
-		void CreateDebuff();
+		void CreateDebuff(Vector2 position, Transform parentTransform);
+		void CreateBuff(Vector2 position, Transform transform);
 		void CreateDebuffSpawner();
 	}
 }
