@@ -6,9 +6,9 @@ using UI.Services.Window;
 using UnityEngine;
 using Zenject;
 
-namespace Dot
+namespace Bubble
 {
-	public class DotDeath : MonoBehaviour
+	public class BubbleDeath : MonoBehaviour
 	{
 		private IWindowService _windowService;
 		private ICountdownTimerService _countdownTimer;
@@ -34,7 +34,7 @@ namespace Dot
 			UpdateCurrentTime();
 			SaveBestTime();
 			OpenGameOverWindow();
-			DestroyDot();
+			DestroyBubble();
 		}
 
 		private void StopTimers()
@@ -60,7 +60,7 @@ namespace Dot
 		private void OpenGameOverWindow() =>
 			_windowService.Open(WindowId.GameOver);
 
-		private void DestroyDot()
+		private void DestroyBubble()
 		{
 			StaticEventsHandler.CallPlayerDiedEvent();
 			Destroy(gameObject);

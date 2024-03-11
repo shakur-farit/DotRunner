@@ -6,7 +6,7 @@ using Zenject;
 
 namespace Rotators
 {
-	public class CircleRotator : Rotator
+	public class NeedleRotator : Rotator
 	{
 		private ICountdownTimerService _countdownTimerService;
 		private IRandomService _randomService;

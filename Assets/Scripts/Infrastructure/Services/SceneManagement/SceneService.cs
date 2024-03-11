@@ -41,8 +41,8 @@ namespace Infrastructure.Services.SceneManagement
 
 		private void ClearScene()
 		{
-			DestroyDot();
-			DestroyCircle();
+			DestroyBubble();
+			DestroyNeedle();
 			DestroyDebuff();
 			DestroyBuff();
 			DestroyDebuffSpawner();
@@ -50,31 +50,31 @@ namespace Infrastructure.Services.SceneManagement
 
 		private void CreateGameObjects()
 		{
-			CreateDot();
-			CreateCircle();
-			CreateDebufSpawner();
+			CreateBubble();
+			CreateNeedle();
+			CreateDebuffSpawner();
 		}
 
-		private void CreateCircle() => 
-			_gameFactory.CreateCircle();
+		private void CreateBubble() => 
+			_gameFactory.CreateBubble();
 
-		private void CreateDot() => 
-			_gameFactory.CreateDot();
+		private void CreateNeedle() => 
+			_gameFactory.CreateNeedle();
 
-		private void CreateDebufSpawner() => 
+		private void CreateDebuffSpawner() => 
 			_gameFactory.CreateDebuffSpawner();
 
-		private void DestroyDot() => 
-			Object.Destroy(_gameFactory.Dot);
+		private void DestroyBubble() => 
+			Object.Destroy(_gameFactory.Bubble);
 
-		private void DestroyCircle() =>
-			Object.Destroy(_gameFactory.Circle);
-
-		private void DestroyDebuff() => 
-			Object.Destroy(_gameFactory.Debuff);
+		private void DestroyNeedle() =>
+			Object.Destroy(_gameFactory.Needle);
 
 		private void DestroyBuff() =>
 			Object.Destroy(_gameFactory.Buff);
+
+		private void DestroyDebuff() => 
+			Object.Destroy(_gameFactory.Debuff);
 
 		private void DestroyDebuffSpawner() => 
 			Object.Destroy(_gameFactory.DebuffSpawner);

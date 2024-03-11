@@ -2,8 +2,8 @@ namespace Infrastructure.AssetsManagement
 {
 	public static class AssetPath
 	{
-		public const string DotPath = "Dot";
-		public const string CirclePath = "Circle";
+		public const string BubblePath = "Bubble";
+		public const string NeedlePath = "Needle";
 		public const string BuffPath = "Buff";
 		public const string DebuffPath = "Debuff";
 		public const string SpawnerPath = "Spawner";

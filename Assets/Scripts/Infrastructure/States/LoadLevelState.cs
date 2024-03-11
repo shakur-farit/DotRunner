@@ -34,17 +34,17 @@ namespace Infrastructure.States
 
 		private void InitGameObjects()
 		{
-			InitDot();
-			InitCircle();
+			InitBubble();
+			InitNeedle();
 			InitDebuffSpawner();
 			InitHud();
 		}
 
-		private void InitDot() =>
-			_gameFactory.CreateDot();
+		private void InitBubble() =>
+			_gameFactory.CreateBubble();
 
-		private void InitCircle() =>
-			_gameFactory.CreateCircle();
+		private void InitNeedle() =>
+			_gameFactory.CreateNeedle();
 
 		private void InitDebuffSpawner() => 
 			_gameFactory.CreateDebuffSpawner();

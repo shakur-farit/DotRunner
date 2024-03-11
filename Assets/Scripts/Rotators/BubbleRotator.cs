@@ -4,7 +4,7 @@ using Zenject;
 
 namespace Rotators
 {
-	public class DotRotator : Rotator
+	public class BubbleRotator : Rotator
 	{
 		private IInputService _inputService;
 

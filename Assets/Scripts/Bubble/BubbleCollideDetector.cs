@@ -3,19 +3,19 @@ using Rotators;
 using StaticEvents;
 using UnityEngine;
 
-namespace Dot
+namespace Bubble
 {
-	[RequireComponent(typeof(DotDeath))]
-	public class DotCollideDetector : MonoBehaviour
+	[RequireComponent(typeof(BubbleDeath))]
+	public class BubbleCollideDetector : MonoBehaviour
 	{
-		private DotDeath _dotDeath;
-		private bool _isCollidedWithCircle;
+		private BubbleDeath _bubbleDeath;
+		private bool _isCollidedWithNeedle;
 		private bool _isCollidedWithBuff;
 		private bool _isCollidedWithDebuff;
 
 		private void Start()
 		{
-			_dotDeath = GetComponent<DotDeath>();
+			_bubbleDeath = GetComponent<BubbleDeath>();
 
 			StaticEventsHandler.OnBuffSpawned += InformAboutNewBuff;
 			StaticEventsHandler.OnDebuffSpawned += InformAboutNewDebuff;
@@ -29,8 +29,8 @@ namespace Dot
 
 		private void OnTriggerEnter2D(Collider2D other)
 		{
-			if (other.GetComponent<CircleRotator>())
-				CollideWithCircle();
+			if (other.GetComponent<NeedleRotator>())
+				CollideWithNeedle();
 
 			if (other.GetComponent<Debuff>())
 			{
@@ -50,7 +50,6 @@ namespace Dot
 			if (_isCollidedWithBuff)
 				return;
 
-			Debug.Log("Buf");
 			_isCollidedWithBuff = true;
 			StaticEventsHandler.CallPickedUpBuffEvent();
 		}
@@ -60,18 +59,17 @@ namespace Dot
 			if(_isCollidedWithDebuff)
 				return;
 
-			Debug.Log("Debuf");
 			_isCollidedWithDebuff = true;
 			StaticEventsHandler.CallPickedUpDebuffEvent();
 		}
 
-		private void CollideWithCircle()
+		private void CollideWithNeedle()
 		{
-			if(_isCollidedWithCircle)
+			if(_isCollidedWithNeedle)
 				return; 
 
-			_isCollidedWithCircle = true;
-			_dotDeath.StopTheGame();
+			_isCollidedWithNeedle = true;
+			_bubbleDeath.StopTheGame();
 			
 		}
 
